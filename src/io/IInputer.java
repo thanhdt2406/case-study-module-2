@@ -1,2 +1,5 @@
-package io;public interface IInputer {
+package io;
+
+public interface IInputer {
+    boolean read();
 }

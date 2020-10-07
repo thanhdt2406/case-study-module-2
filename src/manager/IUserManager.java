@@ -3,7 +3,7 @@ package manager;
 import entity.User;
 
 public interface IUserManager {
-    boolean addUser();
+    boolean createUser();
 
     boolean updateUser();
 
