@@ -1,4 +1,4 @@
-package manager;
+package manager.customer;
 
 public class Customer {
 }

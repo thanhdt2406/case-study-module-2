@@ -2,6 +2,6 @@ package manager.bill;
 
 import manager.IManager;
 
-public class BillManager implements IBillManager {
+public interface IBillManager extends IManager {
 
 }
