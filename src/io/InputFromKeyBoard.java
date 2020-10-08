@@ -2,6 +2,8 @@ package io;
 
 import java.util.Scanner;
 
-public class InputFromKeyBoard {
+public abstract class InputFromKeyBoard implements IInputer {
     Scanner scanner = new Scanner(System.in);
+
+    public abstract boolean input();
 }

@@ -1,9 +1,6 @@
 package manager;
 
-import entity.User;
-
-public class UserManager implements IManager{
-
+public class BillManager implements IManager{
     @Override
     public boolean create() {
         return false;
