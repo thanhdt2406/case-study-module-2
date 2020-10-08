@@ -5,6 +5,7 @@ public class Product {
     protected String name;
     protected String brand;
     protected int price;
+    protected int numbersOfproduct;
 
     public Product() {
     }
@@ -46,5 +47,13 @@ public class Product {
 
     public int getPrice() {
         return price;
+    }
+
+    public void setNumbersOfproduct(int numbersOfproduct) {
+        this.numbersOfproduct = numbersOfproduct;
+    }
+
+    public int getNumbersOfproduct() {
+        return numbersOfproduct;
     }
 }
