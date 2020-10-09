@@ -9,16 +9,22 @@ public class Inputer extends InputFromKeyBoard{
 
     public int inputInt(){
         int value = 0;
-        try {
-            value = scanner.nextInt();
-        }catch (NumberFormatException e){
-            System.out.println("pls input a number!");
-        }
+        boolean check =true;
+        do {
+            try {
+                value = scanner.nextInt();
+                check = false;
+            }catch (NumberFormatException e){
+                System.out.println("pls input a number!");
+                check = true;
+            }
+        }while (check);
+
         return value;
     }
 
     public String inputString(){
-        scanner.nextLine();
+        //scanner.nextLine();
         String str = scanner.nextLine();
         System.out.println(str);
         return str;

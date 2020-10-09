@@ -11,8 +11,8 @@ public class ProductComander {
         this.showAllProduct = showAllProduct;
     }
 
-    public void chooseAddProduct(){
-        addProduct.excuse(new Product());
+    public void chooseAddProduct(Product product){
+        addProduct.excuse(product);
     }
 
     public void chooseShowAllProduct(){
