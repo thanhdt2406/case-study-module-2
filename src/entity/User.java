@@ -5,12 +5,19 @@ public class User {
     private String fullName;
     private String phoneNumber;
     private String address;
-    private String role = "member";
+    private String role;
     private String userName;
     private String password;
 
+    public final int ROLE_CUSTOMER = 0;
+    public final int ROLE_ADMIN = 1;
+
     public User() {
 
+    }
+
+    public User(String name) {
+        this.fullName = name;
     }
 
     public User(String fullName, String phoneNumber, String address, String userName, String password) {
