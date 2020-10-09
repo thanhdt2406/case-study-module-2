@@ -6,19 +6,13 @@ public class Product {
     protected int price;
 
     public Product() {
-
     }
 
-<<<<<<< HEAD
     public Product(String name) {
         this.name = name;
     }
 
-    public Product(int productID, String name, int price) {
-        this.productID = productID;
-=======
     public Product(String name, int price) {
->>>>>>> 600425c260a7ee53f2b4da56c8e14969e84ebfb0
         this.name = name;
         this.price = price;
     }
