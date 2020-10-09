@@ -7,12 +7,11 @@ public class Product {
     protected int price;
 
     public Product() {
+
     }
 
-    public Product(int productID, String name, String brand, int price) {
-        this.productID = productID;
+    public Product(String name, int price) {
         this.name = name;
-        this.brand = brand;
         this.price = price;
     }
 
