@@ -1,7 +1,9 @@
 package manager.user;
 
+import java.util.HashMap;
 
 public class UserManager implements IUserManager {
+    HashMap listUser = new HashMap();
 
     @Override
     public boolean addUser(Object o) {
