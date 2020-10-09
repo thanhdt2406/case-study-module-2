@@ -12,7 +12,7 @@ public class Inputer extends InputFromKeyBoard{
         boolean check =true;
         do {
             try {
-                value = scanner.nextInt();
+                value = Integer.parseInt(scanner.nextLine());
                 check = false;
             }catch (NumberFormatException e){
                 System.out.println("pls input a number!");

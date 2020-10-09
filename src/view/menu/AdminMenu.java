@@ -11,6 +11,7 @@ public class AdminMenu {
     private final String PRODUCT_MENU = "|--1. Add product" +
             "\n|--2. show products";
     private Inputer inputer = new Inputer();
+    private ProductManager managerProduct = new ProductManager();
 
     public AdminMenu() {
     }
@@ -18,7 +19,7 @@ public class AdminMenu {
     public void run() {
         System.out.println(MAIN_MENU);
         int choice = inputer.inputInt();
-        while (choice !=  4){
+        while (choice != 4){
             setUpMainMenu(choice);
             System.out.println(MAIN_MENU);
             choice = inputer.inputInt();
@@ -28,19 +29,30 @@ public class AdminMenu {
     public void setUpMainMenu(int choice) {
         switch (choice) {
             case 1:
-                setUpProductMenu();
+                System.out.println(PRODUCT_MENU);
+                int choice1 = inputer.inputInt();
+                while (choice1 !=3){
+                    setUpProductMenu(choice1);
+                    System.out.println(PRODUCT_MENU);
+                    choice1 = inputer.inputInt();
+                }
                 break;
             case 2:
-                setUpManageUserMenu();
+                System.out.println(PRODUCT_MENU);
+                choice1 = inputer.inputInt();
+                while (choice1 !=3){
+                   setUpManageUserMenu(choice1);
+                    System.out.println(PRODUCT_MENU);
+                    choice1 = inputer.inputInt();
+                }
+
                 break;
             default:
         }
     }
 
-    public void setUpProductMenu() {
-        ProductManager managerProduct = new ProductManager();
-        int choice = inputer.inputInt();
-        System.out.println(PRODUCT_MENU);
+    public void setUpProductMenu(int choice) {
+
         switch (choice){
             case 1:
                 System.out.println("ten sp: ");
@@ -56,7 +68,7 @@ public class AdminMenu {
         }
 
     }
-    public void setUpManageUserMenu(){
+    public void setUpManageUserMenu(int choice){
 //        UserManager userManager = new UserManager();
 //        int choice = inputer.inputInt();
 //        System.out.println(PRODUCT_MENU);

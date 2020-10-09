@@ -1,4 +1,4 @@
-package controller.command;
+package controller.productCommander;
 
 import controller.manager.product.ProductManager;
 
