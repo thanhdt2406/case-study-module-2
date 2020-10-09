@@ -1,15 +1,23 @@
 package manager.user;
 
-public class UserManager implements IUserManager {
+import entity.User;
 
+import java.util.HashMap;
+
+public class UserManager implements IUserManager<User> {
+
+    HashMap<String, User> userMap = new HashMap<>();
     @Override
-    public boolean createUser() {
+    public boolean addUser(User user) {
+        userMap.put(user.getUserName(), user);
         return false;
     }
 
     @Override
-    public void showAllUser() {
-
+    public void showAllUser(){
+        for (User ele : userMap.values()){
+            System.out.println(ele.toString());
+        }
     }
 
     @Override

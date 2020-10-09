@@ -3,17 +3,18 @@ package entity;
 public class Product {
     protected int productID;
     protected String name;
-    protected String brand;
     protected int price;
-    protected int numbersOfproduct;
 
     public Product() {
     }
 
-    public Product(int productID, String name, String brand, int price) {
+    public Product(String name) {
+        this.name = name;
+    }
+
+    public Product(int productID, String name, int price) {
         this.productID = productID;
         this.name = name;
-        this.brand = brand;
         this.price = price;
     }
 
@@ -23,10 +24,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public void setPrice(int price) {
@@ -41,23 +38,12 @@ public class Product {
         return name;
     }
 
-    public String getBrand() {
-        return brand;
-    }
-
     public int getPrice() {
         return price;
     }
 
-    public void setNumbersOfproduct(int numbersOfproduct) {
-        this.numbersOfproduct = numbersOfproduct;
-    }
-
-    public int getNumbersOfproduct() {
-        return numbersOfproduct;
-    }
      @Override
     public String toString(){
-        return String.format("ID: %-4d |Name: %-10s|Brand: %-10s|Price: %-8d",productID,name,brand,price);
+        return String.format("ID: %-4d |Name: %-10s|Price: %-8d",productID,name,price);
      }
 }
