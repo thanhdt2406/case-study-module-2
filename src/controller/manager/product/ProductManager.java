@@ -1,23 +1,47 @@
 package controller.manager.product;
 
-import controller.io.DataURLManager;
+import controller.io.crawler.AccessoriesCrawler;
+import controller.io.crawler.IPhoneCrawler;
+import controller.io.crawler.TabletCrawler;
+import controller.io.crawler.WatchCrawler;
 import model.Product;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductManager implements IProductManager {
-   private List<Product> products = new ArrayList<>();
+    private List<Product> products;
+    private List<Product> iPhoneList;
+    private List<Product> watchList;
+    private List<Product> accessoriesList;
+    private List<Product> tabletList;
     private int numbersOfProduct;
 
     public ProductManager() {
-        DataURLManager dataURLManager = new DataURLManager();
-        try {
-            products = dataURLManager.getData(DataURLManager.IPHONE_URL,DataURLManager.PRODUCT_REGEX,DataURLManager.PRICE_REGEX);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        crawlData();
+        products = new ArrayList<>();
+        products.addAll(iPhoneList);
+        products.addAll(watchList);
+        products.addAll(accessoriesList);
+        products.addAll(tabletList);
+    }
+
+    private void crawlData(){
+        IPhoneCrawler iphoneCrawler = new IPhoneCrawler();
+        iphoneCrawler.run();
+        iPhoneList = iphoneCrawler.getIPhoneList();
+
+        TabletCrawler tabletCrawler = new TabletCrawler();
+        tabletCrawler.run();
+        tabletList = tabletCrawler.getTabletList();
+
+        WatchCrawler watchCrawler = new WatchCrawler();
+        watchCrawler.run();
+        watchList = watchCrawler.getWatchList();
+
+        AccessoriesCrawler accessoriesCrawler = new AccessoriesCrawler();
+        accessoriesCrawler.run();
+        accessoriesList = accessoriesCrawler.getAccessoriesList();
     }
 
     public List<Product> getProducts() {
@@ -43,7 +67,7 @@ public class ProductManager implements IProductManager {
 
     @Override
     public void showProducts() {
-        for (Product ele : products){
+        for (Product ele : products) {
             System.out.println(ele.toString());
         }
     }

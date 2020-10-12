@@ -1,4 +1,4 @@
-package controller.io;
+package controller.io.crawler;
 
 import model.Product;
 
@@ -11,14 +11,9 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DataURLManager {
-    public static String TABLET_URL = "https://clickbuy.com.vn/danh-muc/tablet/";
-    public static String PHONE_URL = "https://clickbuy.com.vn/danh-muc/dien-thoai/";
-    public static String WATCH_URL = "https://clickbuy.com.vn/danh-muc/dong-ho/";
-    public static String IPHONE_URL = "https://clickbuy.com.vn/danh-muc/iphone-moi-chinh-hang/";
-    public static String ACCESSORIES_URL = "https://clickbuy.com.vn/danh-muc/phu-kien/";
-    public static String PRODUCT_REGEX = "woocommerce-loop-product__title\">(.*?)</h2>";
-    public static String PRICE_REGEX = "woocommerce-Price-amount amount\">(.*?)&nbsp;";
+public abstract class CrawlerManager extends Thread {
+    public final String productRegex = "woocommerce-loop-product__title\">(.*?)</h2>";
+    public final String priceRegex = "woocommerce-Price-amount amount\">(.*?)&nbsp;";
 
     private String getContentFromURL(String link) throws IOException {
         URL url = new URL(link);
@@ -44,14 +39,15 @@ public class DataURLManager {
     }
 
     public List<Product> getData(String link, String productRegex, String priceRegex) throws IOException {
-        List<String> listProductName = new ArrayList();
-        List<String> listPrice = new ArrayList();
-        listProductName = getDataFromContent(link, productRegex);
-        listPrice = getDataFromContent(link, priceRegex);
+        List<String> listProductName = getDataFromContent(link, productRegex);
+        List<String> listPrice = getDataFromContent(link, priceRegex);
         List<Product> listProduct = new ArrayList<>();
         for (int i = 0; i < listProductName.size(); i++) {
             listProduct.add(new Product(listProductName.get(i), Integer.parseInt(listPrice.get(i))));
         }
         return listProduct;
     }
+
+    @Override
+    public abstract void run();
 }
