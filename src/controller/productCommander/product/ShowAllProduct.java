@@ -1,6 +1,9 @@
-package controller.productCommander;
+package controller.productCommander.product;
 
 import controller.manager.product.ProductManager;
+import controller.productCommander.Command;
+
+import java.util.HashMap;
 
 public class ShowAllProduct implements Command {
     ProductManager manager = new ProductManager();
@@ -10,7 +13,8 @@ public class ShowAllProduct implements Command {
     }
 
     @Override
-    public void excuse(Object o) {
+    public HashMap excuse(Object o) {
         manager.showProducts();
+        return null;
     }
 }

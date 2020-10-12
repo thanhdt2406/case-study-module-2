@@ -5,9 +5,10 @@ import model.Product;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class ProductManager implements IProductManager {
+public class ProductManager implements IProductManager, SearchProduct {
     private List<Product> products = new ArrayList<>();
     private int nextID;
 
@@ -30,7 +31,7 @@ public class ProductManager implements IProductManager {
 
     public int getNextID() {
         nextID = products.get(products.size() - 1).getProductID();
-        return nextID+1;
+        return nextID + 1;
     }
 
     @Override
@@ -56,4 +57,20 @@ public class ProductManager implements IProductManager {
     }
 
 
+    @Override
+    public HashMap<Integer, Product> searchByName(String name) {
+        HashMap<Integer,Product> result = new HashMap<>();
+        for (int i = 0; i < products.size(); i++) {
+            String productName = products.get(i).getName();
+            if (productName.contains(name)){
+                result.put(i+1,products.get(i));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Product searchByID(int id) {
+        return null;
+    }
 }

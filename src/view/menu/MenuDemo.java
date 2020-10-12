@@ -2,28 +2,44 @@ package view.menu;
 
 import controller.io.Inputer;
 import controller.manager.product.ProductManager;
+import controller.manager.user.UserManager;
 import controller.productCommander.*;
+import controller.productCommander.product.AddProduct;
+import controller.productCommander.product.SearchProductByName;
+import controller.productCommander.product.ShowAllProduct;
+import controller.productCommander.userAcount.AddUser;
+import controller.productCommander.userAcount.ShowAllUser;
 import model.Product;
 import model.User;
+
+import java.util.HashMap;
 
 
 public class MenuDemo {
     private final String MAIN_MENU = "|--1. product management--|" +
             "\n|--2. User management--|" +
+            "\n|--3. Exit-------------|" +
             "\nYour choice:";
     private final String PRODUCT_MENU = "|--1. Add product" +
-            "\n|--2. show products";
+            "\n|--2. show products--|" +
+            "\n|--3. Search by name--|" +
+            "\n|--4. Exit------------|";
     private final String USER_MENU = "|--1. Add user" +
             "\n|--2. show users";
 
     private Inputer inputer = new Inputer();
 
-    private ProductManager manager = new ProductManager();
+    private ProductManager productManager = new ProductManager();
+    private UserManager userManager = new UserManager();
 
-    private Command addProduct = new AddProduct(manager);
-    private Command showAllProduct = new ShowAllProduct(manager);
+    private Command addProduct = new AddProduct(productManager);
+    private Command showAllProduct = new ShowAllProduct(productManager);
+    private Command searchProduct = new SearchProductByName(productManager);
 
-    private ProductComander productComander = new ProductComander(addProduct, showAllProduct);
+    private Command showAllUser = new ShowAllUser(userManager);
+    private Command addUser = new AddUser(userManager);
+
+    private userComander userComander = new userComander(addProduct, showAllProduct, searchProduct, addUser, showAllUser);
 
     public MenuDemo() {
     }
@@ -44,7 +60,7 @@ public class MenuDemo {
                 System.out.println("1");
                 System.out.println(PRODUCT_MENU);
                 int choice1 = inputer.inputInt();
-                while (choice1 != 3) {
+                while (choice1 != 4) {
                     setUpProductMenu(choice1);
                     System.out.println(PRODUCT_MENU);
                     choice1 = inputer.inputInt();
@@ -62,6 +78,7 @@ public class MenuDemo {
 
                 break;
             default:
+                System.out.println("choose an option!");
         }
     }
 
@@ -73,11 +90,18 @@ public class MenuDemo {
                 String name = inputer.inputString();
                 System.out.println("enter price: ");
                 int price = inputer.inputInt();
-                Product product = new Product(manager.getNextID(),name,price);
-                productComander.chooseAddProduct(product);
+                Product product = new Product(productManager.getNextID(), name, price);
+                userComander.chooseAddProduct(product);
                 break;
             case 2:
-                productComander.chooseShowAllProduct();
+                userComander.chooseShowAllProduct();
+                break;
+            case 3:
+                System.out.println("Enter product name: ");
+                name = inputer.inputString();
+                HashMap rs = userComander.chooseSearchProductByName(name);
+                System.out.println(rs.size()+" results found");
+                System.out.println(rs.values());
                 break;
             default:
         }
@@ -92,10 +116,10 @@ public class MenuDemo {
 //                //sc.nextLine();
                 String name = inputer.inputString();
                 User user = new User(name);
-                productComander.chooseAddUser(user);
+                userComander.chooseAddUser(user);
                 break;
             case 2:
-                productComander.chooseShowAllUser();
+                userComander.chooseShowAllUser();
                 break;
             default:
         }

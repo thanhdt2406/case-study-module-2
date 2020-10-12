@@ -1,7 +1,10 @@
-package controller.productCommander;
+package controller.productCommander.product;
 
+import controller.productCommander.Command;
 import model.Product;
 import controller.manager.product.ProductManager;
+
+import java.util.HashMap;
 
 public class AddProduct implements Command<Product> {
 
@@ -12,8 +15,9 @@ public class AddProduct implements Command<Product> {
     }
 
     @Override
-    public void excuse(Product product) {
+    public HashMap excuse(Product product) {
         manager.addProduct(product);
+        return null;
     }
 
 }

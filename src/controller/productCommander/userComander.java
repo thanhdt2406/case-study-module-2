@@ -3,23 +3,32 @@ package controller.productCommander;
 import model.Product;
 import model.User;
 
-public class ProductComander {
+import java.util.HashMap;
+
+public class userComander {
     private Command addProduct;
     private Command showAllProduct;
     private Command addUser;
     private Command showAllUser;
+    private Command searchProductByName;
 
-    public ProductComander(Command addProduct, Command showAllProduct, Command addUser, Command showAllUser) {
+    public userComander(Command addProduct, Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser) {
         this.addProduct = addProduct;
         this.showAllProduct = showAllProduct;
         this.addUser = addUser;
         this.showAllUser = showAllUser;
+        this.searchProductByName = searchProductByName;
     }
 
-    public ProductComander(Command addProduct, Command showAllProduct) {
+    public userComander(Command addProduct, Command showAllProduct) {
         this.addProduct = addProduct;
         this.showAllProduct = showAllProduct;
     }
+
+    //    public userComander(Command showAllProduct, Command searchProductByName) {
+//        this.showAllProduct = showAllProduct;
+//        this.searchProductByName = searchProductByName;
+//    }
 
     public void chooseAddProduct(Product product){
         addProduct.excuse(product);
@@ -27,6 +36,11 @@ public class ProductComander {
 
     public void chooseShowAllProduct(){
         showAllProduct.excuse(new Product());
+    }
+
+    public HashMap chooseSearchProductByName(String name){
+
+        return searchProductByName.excuse(name);
     }
 
     public void chooseAddUser(User user){

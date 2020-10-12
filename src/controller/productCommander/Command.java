@@ -1,5 +1,7 @@
 package controller.productCommander;
 
+import java.util.HashMap;
+
 public interface Command<T> {
-     void excuse(T t);
+     HashMap excuse(T t);
 }
