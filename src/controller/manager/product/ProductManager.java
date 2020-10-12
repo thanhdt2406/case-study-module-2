@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class ProductManager implements IProductManager, SearchProduct {
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
     private List<Product> iPhoneList;
     private List<Product> watchList;
     private List<Product> accessoriesList;
@@ -21,7 +21,6 @@ public class ProductManager implements IProductManager, SearchProduct {
 
     public ProductManager() {
         crawlData();
-        products = new ArrayList<>();
         products.addAll(iPhoneList);
         products.addAll(watchList);
         products.addAll(accessoriesList);
@@ -30,19 +29,18 @@ public class ProductManager implements IProductManager, SearchProduct {
 
     private void crawlData(){
         IPhoneCrawler iphoneCrawler = new IPhoneCrawler();
-        iphoneCrawler.run();
-        iPhoneList = iphoneCrawler.getIPhoneList();
-
-        TabletCrawler tabletCrawler = new TabletCrawler();
-        tabletCrawler.run();
-        tabletList = tabletCrawler.getTabletList();
-
-        WatchCrawler watchCrawler = new WatchCrawler();
-        watchCrawler.run();
-        watchList = watchCrawler.getWatchList();
-
         AccessoriesCrawler accessoriesCrawler = new AccessoriesCrawler();
+        TabletCrawler tabletCrawler = new TabletCrawler();
+        WatchCrawler watchCrawler = new WatchCrawler();
+
+        iphoneCrawler.start();
+        tabletCrawler.start();
+        watchCrawler.run();
         accessoriesCrawler.run();
+
+        iPhoneList = iphoneCrawler.getIPhoneList();
+        tabletList = tabletCrawler.getTabletList();
+        watchList = watchCrawler.getWatchList();
         accessoriesList = accessoriesCrawler.getAccessoriesList();
 
     }

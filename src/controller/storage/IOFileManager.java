@@ -1,13 +1,11 @@
 package controller.storage;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.HashMap;
 
 public class IOFileManager<T, E> {
 
-    public HashMap<T, E> getData(String fileName) throws IOException, ClassNotFoundException {
+    public HashMap<T, E> readData(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(fileName);
         ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
         HashMap<T,E> map = (HashMap<T,E>) objectInputStream.readObject();
@@ -16,7 +14,11 @@ public class IOFileManager<T, E> {
         return map;
     }
 
-    public void updateData(HashMap map, String fileName) {
-        
+    public void writeData(HashMap map, String fileName) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(fileName);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+        objectOutputStream.writeObject(map);
+        objectOutputStream.close();
+        fileOutputStream.close();
     }
 }
