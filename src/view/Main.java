@@ -1,4 +1,6 @@
-package view.menu;
+package view;
+
+import view.menu.MenuDemo;
 
 public class Main {
     public static void main(String[] args) {
