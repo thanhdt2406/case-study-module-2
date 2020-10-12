@@ -69,11 +69,11 @@ public class MenuDemo {
 
         switch (choice) {
             case 1:
-
-                System.out.println("ten sp: ");
-//                //sc.nextLine();
+                System.out.println("enter product name: ");
                 String name = inputer.inputString();
-                Product product = new Product(name);
+                System.out.println("enter price: ");
+                int price = inputer.inputInt();
+                Product product = new Product(manager.getNextID(),name,price);
                 productComander.chooseAddProduct(product);
                 break;
             case 2:

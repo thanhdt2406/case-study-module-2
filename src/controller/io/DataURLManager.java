@@ -50,7 +50,7 @@ public class DataURLManager {
         listPrice = getDataFromContent(link, priceRegex);
         List<Product> listProduct = new ArrayList<>();
         for (int i = 0; i < listProductName.size(); i++) {
-            listProduct.add(new Product(listProductName.get(i), Integer.parseInt(listPrice.get(i))));
+            listProduct.add(new Product(i,listProductName.get(i), Integer.parseInt(listPrice.get(i))));
         }
         return listProduct;
     }

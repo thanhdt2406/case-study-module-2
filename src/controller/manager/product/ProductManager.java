@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductManager implements IProductManager {
-   private List<Product> products = new ArrayList<>();
-    private int numbersOfProduct;
+    private List<Product> products = new ArrayList<>();
+    private int nextID;
 
     public ProductManager() {
         DataURLManager dataURLManager = new DataURLManager();
         try {
-            products = dataURLManager.getData(DataURLManager.IPHONE_URL,DataURLManager.PRODUCT_REGEX,DataURLManager.PRICE_REGEX);
+            products = dataURLManager.getData(DataURLManager.IPHONE_URL, DataURLManager.PRODUCT_REGEX, DataURLManager.PRICE_REGEX);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -28,12 +28,9 @@ public class ProductManager implements IProductManager {
         this.products = products;
     }
 
-    public void setNumbersOfProduct(int numbersOfProduct) {
-        this.numbersOfProduct = numbersOfProduct;
-    }
-
-    public int getNumbersOfProduct() {
-        return numbersOfProduct;
+    public int getNextID() {
+        nextID = products.get(products.size() - 1).getProductID();
+        return nextID+1;
     }
 
     @Override
@@ -43,7 +40,7 @@ public class ProductManager implements IProductManager {
 
     @Override
     public void showProducts() {
-        for (Product ele : products){
+        for (Product ele : products) {
             System.out.println(ele.toString());
         }
     }

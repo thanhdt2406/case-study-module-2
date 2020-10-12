@@ -1,6 +1,7 @@
 package model;
 
 public class Product {
+    ;
     protected int productID;
     protected String name;
     protected int price;
@@ -16,6 +17,13 @@ public class Product {
         this.name = name;
         this.price = price;
     }
+
+    public Product(int id, String name, int price) {
+        this.productID = id;
+        this.name = name;
+        this.price = price;
+    }
+
 
     public void setProductID(int productID) {
         this.productID = productID;
@@ -41,8 +49,8 @@ public class Product {
         return price;
     }
 
-     @Override
-    public String toString(){
-        return String.format("ID: %-4d |Name: %-60s|Price: %-8d",productID,name,price);
-     }
+    @Override
+    public String toString() {
+        return String.format("ID: %-4d |Name: %-60s|Price: %-8d", productID, name, price);
+    }
 }
