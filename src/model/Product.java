@@ -43,6 +43,6 @@ public class Product {
 
      @Override
     public String toString(){
-        return String.format("ID: %-4d |Name: %-10s|Price: %-8d",productID,name,price);
+        return String.format("ID: %-4d |Name: %-60s|Price: %-8d",productID,name,price);
      }
 }
