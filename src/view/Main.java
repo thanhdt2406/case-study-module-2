@@ -4,16 +4,13 @@ import controller.command.AddProduct;
 import controller.command.Command;
 import controller.command.ProductComander;
 import controller.command.ShowAllProduct;
-import model.Product;
 import controller.io.Inputer;
 import controller.manager.product.ProductManager;
-
+import model.Product;
 
 public class Main {
 
     public static void main(String[] args) {
-
-
         Inputer inputer = new Inputer();
 
         ProductManager manager = new ProductManager();

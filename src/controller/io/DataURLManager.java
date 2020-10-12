@@ -12,6 +12,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DataURLManager {
+    public static String TABLET_URL = "https://clickbuy.com.vn/danh-muc/tablet/";
+    public static String PHONE_URL = "https://clickbuy.com.vn/danh-muc/dien-thoai/";
+    public static String WATCH_URL = "https://clickbuy.com.vn/danh-muc/dong-ho/";
+    public static String IPHONE_URL = "https://clickbuy.com.vn/danh-muc/iphone-moi-chinh-hang/";
+    public static String ACCESSORIES_URL = "https://clickbuy.com.vn/danh-muc/phu-kien/";
+    public static String PRODUCT_REGEX = "woocommerce-loop-product__title\">(.*?)</h2>";
+    public static String PRICE_REGEX = "woocommerce-Price-amount amount\">(.*?)&nbsp;";
+
     private String getContentFromURL(String link) throws IOException {
         URL url = new URL(link);
         Scanner scanner = new Scanner(new InputStreamReader(url.openStream()));
@@ -19,6 +27,8 @@ public class DataURLManager {
         String content = scanner.next();
         scanner.close();
         content = content.replaceAll("\\n+", "");
+        content = content.replaceAll("[,]", "");
+        content = content.replaceAll("&#8211;", "-");
         return content;
     }
 
@@ -33,11 +43,11 @@ public class DataURLManager {
         return data;
     }
 
-    public List<Product> getData(String link, String productRegex, String priceRegax) throws IOException {
+    public List<Product> getData(String link, String productRegex, String priceRegex) throws IOException {
         List<String> listProductName = new ArrayList();
         List<String> listPrice = new ArrayList();
         listProductName = getDataFromContent(link, productRegex);
-        listPrice = getDataFromContent(link, priceRegax);
+        listPrice = getDataFromContent(link, priceRegex);
         List<Product> listProduct = new ArrayList<>();
         for (int i = 0; i < listProductName.size(); i++) {
             listProduct.add(new Product(listProductName.get(i), Integer.parseInt(listPrice.get(i))));
