@@ -1,5 +1,5 @@
 package controller.manager;
 
-public interface IManager {
+public interface ISearcher {
 
 }

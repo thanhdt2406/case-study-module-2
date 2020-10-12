@@ -1,8 +1,8 @@
 package controller.manager.user;
 
-import controller.manager.IManager;
+import controller.manager.ISearcher;
 
-public interface IUserManager<T> extends IManager {
+public interface IUserManager<T> extends ISearcher {
     boolean addUser(T t);
 
     void showAllUser();

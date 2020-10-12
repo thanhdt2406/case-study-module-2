@@ -1,13 +1,14 @@
 package view;
 
 import view.menu.AdminMenu;
+import view.menu.MenuDemo;
 
 
 public class Main {
 
     public static void main(String[] args) {
 
-        AdminMenu menu = new AdminMenu();
+        MenuDemo menu = new MenuDemo();
         menu.run();
 //        Inputer inputer = new Inputer();
 //

@@ -1,7 +1,7 @@
 package controller.manager.bill;
 
-import controller.manager.IManager;
+import controller.manager.ISearcher;
 
-public interface IBillManager extends IManager {
+public interface IBillManager extends ISearcher {
 
 }

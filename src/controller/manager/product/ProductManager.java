@@ -40,5 +40,15 @@ public class ProductManager implements IProductManager {
         }
     }
 
+    @Override
+    public void updateProduct() {
+
+    }
+
+    @Override
+    public void deleteProduct() {
+
+    }
+
 
 }

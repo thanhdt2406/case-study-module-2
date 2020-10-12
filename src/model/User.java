@@ -16,8 +16,8 @@ public class User {
 
     }
 
-    public User(String name) {
-        this.fullName = name;
+    public User(String username) {
+        this.userName = username;
     }
 
     public User(String fullName, String phoneNumber, String address, String userName, String password) {
