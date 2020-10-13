@@ -7,35 +7,45 @@ import java.util.List;
 
 public class CustomerMenu extends Menu {
     private final String CUSTOMER_MENU = "|--1. Search product-------|" +
-                                         "\n|--2. Add product to cart--|" +
-                                         "\n|--3. Pay -----------------|" +
-                                         "\n|--4. Show history---------|" +
-                                         "\n|--5. Edit acoount --------|" +
-                                         "\n|--6. Back ----------------|";
+            "\n|--2. Add product to cart--|" +
+            "\n|--3. Pay -----------------|" +
+            "\n|--4. Show history---------|" +
+            "\n|--5. Edit acoount --------|" +
+            "\n|--6. Back ----------------|";
     private final String EDIT_MENU = "|--1. Change password-------|" +
-                                     "|--2. Edit full name--------|" +
-                                     "|--3. Edit phone number-----|" +
-                                     "|--4. Edit address----------|" +
-                                     "|--4. Edit all--------------|";
+            "|--2. Edit full name--------|" +
+            "|--3. Edit phone number-----|" +
+            "|--4. Edit address----------|" +
+            "|--4. Edit all--------------|" +
+            "|--5. Back";
     private final String SEARCH_MENU = "|--1. Search by name------|" +
             "\n|--2. Search by id----|" +
             "\n|--3 Add to cart------|";
-    private Customer customer = new Customer();
+    //private Customer customer = new Customer();
+    private User customer = userManager.getCurrentUser();
+
 
     public CustomerMenu() {
     }
 
-    public void run(){
-        System.out.println(CUSTOMER_MENU);
+    public void run() {
+        int choice;
+        do {
+            System.out.println(CUSTOMER_MENU);
+            choice = inputer.inputInt("Your choice: ");
+            setUpCusTomerMenu(choice);
+        }while (choice!=6);
+
+
     }
 
-    public void setUpCusTomerMenu(int choice){
-        switch (choice){
+    public void setUpCusTomerMenu(int choice) {
+        switch (choice) {
             case 1:
-                searchProduct();
+                System.out.println("search product");
                 break;
             case 2:
-                User customer = userManager.getCurrentUser();
+                System.out.println("add ti cart");
                 //customer.cart.add(product);
                 break;
             case 3:
@@ -50,6 +60,19 @@ public class CustomerMenu extends Menu {
                 break;
             default:
                 System.out.println("choose an option!");
+        }
+    }
+
+    public void setupEDIT_MENU(int choice){
+        switch (choice){
+            case 1:
+                System.out.println("change password");
+                break;
+            case 2:
+                System.out.println();
+            case 3:
+            case 4:
+            case 5:
         }
     }
 }
