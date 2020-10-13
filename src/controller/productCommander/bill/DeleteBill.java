@@ -3,10 +3,16 @@ package controller.productCommander.bill;
 import controller.manager.bill.BillManager;
 import controller.productCommander.Command;
 
-public class DeleteBill implements Command {
+public class DeleteBill implements Command<Void, Integer> {
     BillManager manager = new BillManager();
+
+    public DeleteBill(BillManager manager) {
+        this.manager = manager;
+    }
+
     @Override
-    public Object excuse(Object o) {
+    public Void excuse(Integer id) {
+        manager.deleteBill(id.intValue());
         return null;
     }
 }

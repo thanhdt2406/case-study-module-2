@@ -13,7 +13,10 @@ public class Bill implements Serializable {
     private static int ID = 0;
     private LocalDate date;
 
-    public Bill(int customerID) {
+    public Bill() {
+    }
+
+    public Bill(int customerID, List<Product> list) {
         this.billID = ID++;
         this.productList = new ArrayList<>();
         this.date = LocalDate.now();
@@ -36,6 +39,8 @@ public class Bill implements Serializable {
         this.productList.add(product);
         this.totalPrice += product.getPrice();
     }
+
+
 
     @Override
     public String toString() {

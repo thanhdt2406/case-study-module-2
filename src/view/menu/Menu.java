@@ -4,9 +4,9 @@ import controller.io.Inputer;
 import controller.manager.bill.BillManager;
 import controller.manager.product.ProductManager;
 import controller.manager.user.UserManager;
-import controller.productCommander.Comander;
+import controller.productCommander.Commander;
 import controller.productCommander.Command;
-import controller.productCommander.bill.AddBill;
+import controller.productCommander.bill.*;
 import controller.productCommander.product.SearchProductById;
 import controller.productCommander.product.SearchProductByName;
 import controller.productCommander.product.ShowAllProduct;
@@ -34,12 +34,18 @@ public class Menu {
     protected Command addUser = new AddUser(userManager);
 
     protected Command addBill = new AddBill(billManager);
+    protected Command deleteBill = new DeleteBill(billManager);
+    protected Command showBill = new ShowBills(billManager);
+    protected Command searchBill = new SearchBill(billManager);
+    protected Command addProductToBill = new AddProductToBill();
 
-    protected controller.productCommander.Comander comander = new Comander(showAllProduct, searchProductByName, addUser, showAllUser, addBill, searchProductById);
+    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, addBill, searchProductById);
+
+    protected Commander billCommander = new Commander(addBill,deleteBill,showBill,searchBill,addProductToBill);
 
     public void setSearchProductByName() {
         String name = inputer.inputString("Enter product name: ");
-        List rs = comander.chooseSearchProductByName(name);
+        List rs = commander.chooseSearchProductByName(name);
         System.out.println(rs.size() + " results found!");
         for (Object r : rs) {
             System.out.println(r.toString());
@@ -48,8 +54,9 @@ public class Menu {
 
     public void setSearchProductById(){
         int productID = inputer.inputInt("Enter product id: ");
-        Product rs = comander.chooseSearchProductByID(productID);
+        Product rs = commander.chooseSearchProductByID(productID);
         System.out.println(rs.toString());
     }
+
 
 }

@@ -70,7 +70,7 @@ public class LoginMenu extends Menu {
         int phoneNumber = inputer.inputInt("Enter your phone number: ");
         String address = inputer.inputString("Enter your address");
         User user = new User(username, password, fullName, phoneNumber, address);
-        comander.chooseAddUser(user);
+        commander.chooseAddUser(user);
         System.out.println("!~~_Sign up successful_~~!");
     }
 

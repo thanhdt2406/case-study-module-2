@@ -1,7 +1,5 @@
 package view.menu;
 
-import java.util.List;
-
 
 public class AdminMenu extends Menu {
 
@@ -72,7 +70,7 @@ public class AdminMenu extends Menu {
     public void setupProductMenu(int productChoice) {
         switch (productChoice) {
             case 1:
-                comander.chooseShowAllProduct();
+                commander.chooseShowAllProduct();
                 inputer.inputString("Press enter to continue...");
                 break;
             case 2:
@@ -89,7 +87,7 @@ public class AdminMenu extends Menu {
     public void setupManageUserMenu(int userManagerChoice) {
         switch (userManagerChoice) {
             case 1:
-                comander.chooseShowAllUser();
+                commander.chooseShowAllUser();
                 inputer.inputString("Press enter to continue...");
                 break;
             case 2:
@@ -108,6 +106,6 @@ public class AdminMenu extends Menu {
     }
 
     public void setupManageBillMenu() {
-        // Bill Manager
+        System.out.println();
     }
 }
