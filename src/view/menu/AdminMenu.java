@@ -56,7 +56,7 @@ public class AdminMenu extends Menu {
                     userManagerChoice = inputer.inputInt("Your choice: ");
                     setupManageUserMenu(userManagerChoice);
                 }
-                while (userManagerChoice != 3);
+                while (userManagerChoice != 4);
                 break;
             case 3:
                 //????????????????????
@@ -76,18 +76,12 @@ public class AdminMenu extends Menu {
                 inputer.inputString("Press enter to continue...");
                 break;
             case 2:
-                String name = inputer.inputString("Enter product name: ");
-                List rs = comander.chooseSearchProductByName(name);
-                System.out.println(rs.size() + " results found!");
-                for (Object r : rs) {
-                    System.out.println(r.toString());
-                }
+                setSearchProductByName();
                 inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-
                 // Search Product By ID
-
+                setSearchProductById();
                 inputer.inputString("Press enter to continue...");
                 break;
         }

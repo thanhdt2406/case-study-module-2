@@ -1,7 +1,8 @@
 package view.menu;
 
 import model.Product;
-import model.User;
+import model.user.Customer;
+import model.user.User;
 
 import java.util.List;
 
@@ -24,11 +25,11 @@ public class CustomerMenu extends Menu {
                     "\n|--6. Back ----------------|";
             System.out.println(CUSTOMER_MENU);
             choice = inputer.inputInt("Your choice: ");
-            setUpCusTomerMenu(choice);
+            setupCusTomerMenu(choice);
         } while (choice != 6);
     }
 
-    public void setUpCusTomerMenu(int choice) {
+    public void setupCusTomerMenu(int choice) {
         switch (choice) {
             case 1:
                 System.out.println("search product");
@@ -44,8 +45,8 @@ public class CustomerMenu extends Menu {
                 } while (choice1 != 4);
                 break;
             case 2:
-                System.out.println("add ti cart");
-                List<Product> cart = customer.getCart();
+                System.out.println("add to cart");
+                //List<Product> cart = customer.getCart();
                 break;
             case 3:
                 System.out.println("buy product");
@@ -99,7 +100,8 @@ public class CustomerMenu extends Menu {
                 System.out.println("search by name");
                 break;
             case 2:
-                System.out.println("search by id");
+                setSearchProductById();
+                inputer.inputString("Press enter to continue...");
                 break;
             case 3:
                 System.out.println("add to cart");

@@ -1,8 +1,6 @@
-package model;
+package model.user;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class User implements Serializable {
     private String fullName;
@@ -11,15 +9,10 @@ public class User implements Serializable {
     private String userName;
     private String password;
 
-    private int role;
-
-    private List<Product> cart = new ArrayList<>();
-
-    public final static int ROLE_CUSTOMER = 0;
-    public final static int ROLE_ADMIN = 1;
+    private boolean isAdmin;
 
     public User() {
-        this.role = ROLE_CUSTOMER;
+        this.isAdmin = false;
     }
 
     public User(String username) {
@@ -34,13 +27,6 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public List<Product> getCart() {
-        return cart;
-    }
-
-    public void setCart(List<Product> cart) {
-        this.cart = cart;
-    }
 
     public String getFullName() {
         return fullName;
@@ -66,12 +52,12 @@ public class User implements Serializable {
         this.address = address;
     }
 
-    public int getRole() {
-        return role;
+    public boolean getRole() {
+        return isAdmin;
     }
 
-    public void setRole(int role) {
-        this.role = role;
+    public void setRole(boolean role) {
+        this.isAdmin = role;
     }
 
     public String getUserName() {

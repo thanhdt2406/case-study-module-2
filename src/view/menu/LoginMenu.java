@@ -1,16 +1,13 @@
 package view.menu;
 
-import controller.io.Inputer;
 import controller.manager.user.UserManager;
-import model.User;
-import view.menu.AdminMenu;
-import view.menu.CustomerMenu;
+import model.user.User;
 
 public class LoginMenu extends Menu {
     private final String LOGIN_MENU =
-              "|--1. Login-----|" +
-            "\n|--2. Sign up---|" +
-            "\n|--3. Exit------|";
+            "|--1. Login-----|" +
+                    "\n|--2. Sign up---|" +
+                    "\n|--3. Exit------|";
     AdminMenu adminMenu = new AdminMenu();
     CustomerMenu customerMenu = new CustomerMenu();
 
@@ -43,12 +40,12 @@ public class LoginMenu extends Menu {
         boolean loginSuccess = userManager.login(username, password);
         if (loginSuccess) {
             System.out.println("!~~_Login successful_~~!");
-            if (userManager.getCurrentUser().getRole() == User.ROLE_ADMIN) {
+            if (userManager.getCurrentUser().getRole()) {
                 adminMenu.run();
             } else {
                 customerMenu.run();
             }
-        } else{
+        } else {
             System.out.println("Wrong username or password!");
             System.out.println("!~~_Login failed_~~!");
         }
@@ -56,7 +53,7 @@ public class LoginMenu extends Menu {
 
     private boolean isExistUser(String userName) {
         UserManager userManager = UserManager.getUserManager();
-        if (userManager.getListUser().containsKey(userName)||userName.equals("admin")) {
+        if (userManager.getListUser().containsKey(userName) || userName.equals("admin")) {
             return true;
         }
         return false;
@@ -76,6 +73,5 @@ public class LoginMenu extends Menu {
         comander.chooseAddUser(user);
         System.out.println("!~~_Sign up successful_~~!");
     }
-
 
 }

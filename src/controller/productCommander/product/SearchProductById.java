@@ -4,9 +4,7 @@ import controller.manager.product.ProductManager;
 import controller.productCommander.Command;
 import model.Product;
 
-import java.util.List;
-
-public class SearchProductById implements Command<List,Integer> {
+public class SearchProductById implements Command<Product,Integer> {
     ProductManager manager = ProductManager.getProductManager();
 
     public SearchProductById(ProductManager manager) {
@@ -14,8 +12,7 @@ public class SearchProductById implements Command<List,Integer> {
     }
 
     @Override
-    public List excuse(Integer i) {
-        manager.searchByID(i.intValue());
-        return null;
+    public Product excuse(Integer i) {
+       return manager.searchByID(i.intValue());
     }
 }

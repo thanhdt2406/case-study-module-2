@@ -2,8 +2,7 @@ package controller.productCommander.userAcount;
 
 import controller.manager.user.UserManager;
 import controller.productCommander.Command;
-import model.Product;
-import model.User;
+import model.user.User;
 
 import java.util.List;
 

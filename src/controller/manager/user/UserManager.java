@@ -1,7 +1,7 @@
 package controller.manager.user;
 
 import controller.storage.IOFileManager;
-import model.User;
+import model.user.User;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,7 +25,7 @@ public class UserManager implements IUserManager {
 
     public boolean login(String username, String password) {
         if (username.equals("admin") && password.equals("admin")) {
-            currentUser.setRole(User.ROLE_ADMIN);
+            currentUser.setRole(true);
             return true;
         }
         for (User ele : listUser.values()) {

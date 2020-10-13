@@ -7,18 +7,17 @@ import controller.manager.user.UserManager;
 import controller.productCommander.Comander;
 import controller.productCommander.Command;
 import controller.productCommander.bill.AddBill;
+import controller.productCommander.product.SearchProductById;
 import controller.productCommander.product.SearchProductByName;
 import controller.productCommander.product.ShowAllProduct;
 import controller.productCommander.userAcount.AddUser;
 import controller.productCommander.userAcount.ShowAllUser;
 import model.Product;
+import model.user.User;
 
 import java.util.List;
 
 public class Menu {
-    protected final String CUSTOMER_MENU = "|--1. Add user" +
-            "\n|--2. show users" +
-            "\n|--3. Exit";
 
     protected Inputer inputer = new Inputer();
 
@@ -29,21 +28,29 @@ public class Menu {
 
 
     protected Command showAllProduct = new ShowAllProduct(productManager);
-    protected Command searchProduct = new SearchProductByName(productManager);
+    protected Command searchProductByName = new SearchProductByName(productManager);
+    protected Command searchProductById = new SearchProductById(productManager);
 
     protected Command showAllUser = new ShowAllUser(userManager);
     protected Command addUser = new AddUser(userManager);
 
     protected Command addBill = new AddBill(billManager);
 
-    protected controller.productCommander.Comander comander = new Comander(showAllProduct, searchProduct, addUser, showAllUser, addBill);
+    protected controller.productCommander.Comander comander = new Comander(showAllProduct, searchProductByName, addUser, showAllUser, addBill, searchProductById);
 
-    public void searchProduct() {
+    public void setSearchProductByName() {
         String name = inputer.inputString("Enter product name: ");
-        List<Product> rs = comander.chooseSearchProductByName(name);
-        System.out.println(rs.size() + " results found");
-        for (int i = 0; i < rs.size(); i++) {
-            System.out.println(rs.get(i).toString());
+        List rs = comander.chooseSearchProductByName(name);
+        System.out.println(rs.size() + " results found!");
+        for (Object r : rs) {
+            System.out.println(r.toString());
         }
     }
+
+    public void setSearchProductById(){
+        int productID = inputer.inputInt("Enter product id: ");
+        Product rs = comander.chooseSearchProductByID(productID);
+        System.out.println(rs.toString());
+    }
+
 }
