@@ -4,7 +4,6 @@ import controller.io.Inputer;
 import controller.manager.product.ProductManager;
 import controller.manager.user.UserManager;
 import controller.productCommander.*;
-import controller.productCommander.product.AddProduct;
 import controller.productCommander.product.SearchProductByName;
 import controller.productCommander.product.ShowAllProduct;
 import controller.productCommander.userAcount.AddUser;
@@ -32,14 +31,13 @@ public class MenuDemo {
     private ProductManager productManager = new ProductManager();
     private UserManager userManager = new UserManager();
 
-    private Command addProduct = new AddProduct(productManager);
     private Command showAllProduct = new ShowAllProduct(productManager);
     private Command searchProduct = new SearchProductByName(productManager);
 
     private Command showAllUser = new ShowAllUser(userManager);
     private Command addUser = new AddUser(userManager);
 
-    private userComander userComander = new userComander(addProduct, showAllProduct, searchProduct, addUser, showAllUser);
+    private userComander userComander = new userComander(showAllProduct, searchProduct, addUser, showAllUser);
 
     public MenuDemo() {
     }
@@ -91,7 +89,6 @@ public class MenuDemo {
                 System.out.println("enter price: ");
                 int price = inputer.inputInt();
                 Product product = new Product(productManager.getNextID(), name, price);
-                userComander.chooseAddProduct(product);
                 break;
             case 2:
                 userComander.chooseShowAllProduct();

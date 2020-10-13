@@ -36,12 +36,12 @@ public class ProductManager implements IProductManager, SearchProduct {
         tabletCrawler.start();
         watchCrawler.start();
         accessoriesCrawler.start();
-        try{
+        try {
             iphoneCrawler.join();
             tabletCrawler.join();
             watchCrawler.join();
             accessoriesCrawler.join();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -65,10 +65,6 @@ public class ProductManager implements IProductManager, SearchProduct {
         return nextID + 1;
     }
 
-    @Override
-    public void addProduct(Product product) {
-        productList.add(product);
-    }
 
     @Override
     public void showProducts() {
@@ -76,29 +72,6 @@ public class ProductManager implements IProductManager, SearchProduct {
             System.out.println(ele.toString());
         }
     }
-
-    public boolean isExist(int id) {
-        if (productList.isEmpty()) {
-            return false;
-        }
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getProductID() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public void updateProduct(int id) {
-
-    }
-
-    @Override
-    public void deleteProduct() {
-
-    }
-
 
     @Override
     public HashMap<Integer, Product> searchByName(String name) {
@@ -114,6 +87,11 @@ public class ProductManager implements IProductManager, SearchProduct {
 
     @Override
     public Product searchByID(int id) {
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getProductID() == id) {
+                return productList.get(i);
+            }
+        }
         return null;
     }
 }
