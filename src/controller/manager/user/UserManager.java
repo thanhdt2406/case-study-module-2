@@ -45,6 +45,9 @@ public class UserManager implements IUserManager {
 
     private void readData() {
         IOFileManager ioFileManager = IOFileManager.getInstance();
+        if(ioFileManager.isEmpty("data/user.dat")){
+            return;
+        }
         try {
             listUser = ioFileManager.readData("data/user.dat");
         } catch (IOException e) {

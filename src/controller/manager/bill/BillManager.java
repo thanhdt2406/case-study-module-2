@@ -15,8 +15,11 @@ public class BillManager {
 
     private void readData() {
         IOFileManager ioFileManager = IOFileManager.getInstance();
+        if(ioFileManager.isEmpty("data/bill.dat")){
+            return;
+        }
         try {
-            billMap = ioFileManager.readData("data/listBill.dat");
+            billMap = ioFileManager.readData("data/bill.dat");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -27,7 +30,7 @@ public class BillManager {
     private void writeData() {
         IOFileManager ioFileManager = IOFileManager.getInstance();
         try {
-            ioFileManager.writeData(billMap, "data/listBill.dat");
+            ioFileManager.writeData(billMap, "data/bill.dat");
         } catch (IOException e) {
             e.printStackTrace();
         }
