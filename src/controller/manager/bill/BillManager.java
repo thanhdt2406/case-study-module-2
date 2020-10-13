@@ -15,7 +15,7 @@ public class BillManager {
 
     private void readData() {
         IOFileManager ioFileManager = IOFileManager.getInstance();
-        if(ioFileManager.isEmpty("data/bill.dat")){
+        if (ioFileManager.isEmpty("data/bill.dat")) {
             return;
         }
         try {
@@ -48,8 +48,8 @@ public class BillManager {
         System.out.println(billMap);
     }
 
-    public boolean deleteBill(int ID){
-        if(billMap.containsKey(ID)){
+    public boolean deleteBill(int ID) {
+        if (billMap.containsKey(ID)) {
             billMap.remove(ID);
             writeData();
             return true;
@@ -57,8 +57,8 @@ public class BillManager {
         return false;
     }
 
-    public Bill searchByID(int ID){
-        if(billMap.containsKey(ID)){
+    public Bill searchByID(int ID) {
+        if (billMap.containsKey(ID)) {
             return billMap.get(ID);
         }
         return null;

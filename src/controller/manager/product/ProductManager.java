@@ -27,8 +27,8 @@ public class ProductManager implements IProductManager, SearchProduct {
         productList.addAll(tabletList);
     }
 
-    public static ProductManager getProductManager(){
-        if(productManager==null){
+    public static ProductManager getProductManager() {
+        if (productManager == null) {
             productManager = new ProductManager();
         }
         return productManager;
