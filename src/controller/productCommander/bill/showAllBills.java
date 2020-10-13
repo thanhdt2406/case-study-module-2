@@ -4,10 +4,10 @@ import controller.manager.bill.BillManager;
 import controller.productCommander.Command;
 
 public class showAllBills implements Command {
-    BillManager manager = new BillManager();
+    BillManager billManager = BillManager.getBillManager();
 
-    public showAllBills(BillManager manager) {
-        this.manager = manager;
+    public showAllBills(BillManager billManager) {
+        this.billManager = billManager;
     }
 
     @Override

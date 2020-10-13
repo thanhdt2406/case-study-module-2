@@ -23,7 +23,7 @@ public class Menu {
     protected ProductManager productManager = ProductManager.getProductManager();
     protected UserManager userManager = UserManager.getUserManager();
 
-    protected BillManager billManager = new BillManager();
+    protected BillManager billManager = BillManager.getBillManager();
 
 
     protected Command showAllProduct = new ShowAllProduct(productManager);

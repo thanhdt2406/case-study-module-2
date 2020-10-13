@@ -7,10 +7,10 @@ import model.Product;
 import java.util.List;
 
 public class AddBill implements Command {
-    BillManager manager = new BillManager();
+    BillManager billManager = BillManager.getBillManager();
 
     public AddBill(BillManager manager) {
-        this.manager = manager;
+        this.billManager = manager;
     }
 
     @Override
