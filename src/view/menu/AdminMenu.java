@@ -1,8 +1,5 @@
 package view.menu;
 
-import model.Product;
-import model.User;
-
 import java.util.List;
 
 
@@ -12,89 +9,112 @@ public class AdminMenu extends Menu {
     }
 
     public void run() {
-        String MAIN_MENU = "|--1. product management--|" +
-                "\n|--2. User management--|" +
-                "\n|--3. Exit-------------|";
-        System.out.println(MAIN_MENU);
-        int choice = inputer.inputInt("Your choice: ");
-        while (choice != 4) {
-            setUpMainMenu(choice);
-            System.out.println(MAIN_MENU);
+        String ADMIN_MENU =
+                         "\n|--------ADMIN MENU--------|" +
+                         "\n|--1. Product management---|" +
+                         "\n|--2. User management------|" +
+                         "\n|--3. Bill management------|" +
+                         "\n|--4. Log out--------------|" +
+                         "\n|--5. Exit-----------------|";
+        int choice;
+        do{
+            System.out.println("___________________________________________________");
+            System.out.println(ADMIN_MENU);
             choice = inputer.inputInt("Your choice: ");
-        }
+            setUpMainMenu(choice);
+        } while (choice != 4);
     }
 
     public void setUpMainMenu(int choice) {
-        String PRODUCT_MENU = "|--1. Add product" +
-                "\n|--2. show products--|" +
-                "\n|--3. Search by name--|" +
-                "\n|--4. Exit------------|";
-        String MANAGE_USER_MENU = "|--1. Add user-------|" +
-                "\n|--2. Show all users-|" +
-                "\n|--3. Delete user----|" +
-                "\n|--4. Update user----|";
+        String PRODUCT_MENU =
+                "\n|-----PRODUCT MENU-----|" +
+                "\n|--1. Show products----|" +
+                "\n|--2. Search by name---|" +
+                "\n|--3. Search by ID-----|" +
+                "\n|--4. Back-------------|";
+        String USER_MANAGER_MENU =
+                "\n|---USER MANAGER MENU---|" +
+                "\n|--1. Show all users----|" +
+                "\n|--2. Delete user-------|" +
+                "\n|--3. Update user-------|" +
+                "\n|--4. Back--------------|";
         switch (choice) {
             case 1:
-                System.out.println(PRODUCT_MENU);
-                int choice1 = inputer.inputInt("Your choice: ");
-                while (choice1 != 4) {
-                    setUpProductMenu(choice1);
+                int productChoice;
+                do{
+                    System.out.println("___________________________________________________");
                     System.out.println(PRODUCT_MENU);
-                    choice1 = inputer.inputInt("Your choice: ");
-                }
+                    productChoice = inputer.inputInt("Your choice: ");
+                    setupProductMenu(productChoice);
+                } while (productChoice != 4);
                 break;
             case 2:
-                System.out.println(MANAGE_USER_MENU);
-                choice1 = inputer.inputInt("Your choice: ");
-                while (choice1 != 3) {
-                    setUpManageUserMenu(choice1);
-                    System.out.println(MANAGE_USER_MENU);
-                    choice1 = inputer.inputInt("Your choice: ");
+                int userManagerChoice;
+                do{
+                    System.out.println("___________________________________________________");
+                    System.out.println(USER_MANAGER_MENU);
+                    userManagerChoice = inputer.inputInt("Your choice: ");
+                    setupManageUserMenu(userManagerChoice);
                 }
-                break;
-            default:
-                System.out.println("choose an option!");
-        }
-    }
-
-    public void setUpProductMenu(int choice) {
-        switch (choice) {
-            case 1:
-                String name = inputer.inputString("enter product name: ");
-                int price = inputer.inputInt("enter price");
-                Product product = new Product(productManager.getNextID(), name, price);
-                break;
-            case 2:
-                comander.chooseShowAllProduct();
+                while (userManagerChoice != 3);
                 break;
             case 3:
-                name = inputer.inputString("Enter product name: ");
-                List rs = comander.chooseSearchProductByName(name);
-                System.out.println(rs.size() + " results found");
-                for (int i = 0; i < rs.size(); i++) {
-                    System.out.println(rs.get(i).toString());
-                }
+                //????????????????????
                 break;
+            case 5:
+                System.out.println("Exit program!!!");
+                System.exit(0);
             default:
+                System.out.println("No choice! Try again :D");
         }
     }
 
-    public void setUpManageUserMenu(int choice) {
-        switch (choice) {
+    public void setupProductMenu(int productChoice) {
+        switch (productChoice) {
             case 1:
-                String name = inputer.inputString("enter username: ");
-                User user = new User(name);
-                comander.chooseAddUser(user);
+                comander.chooseShowAllProduct();
+                inputer.inputString("Press enter to continue...");
                 break;
             case 2:
-                System.out.println("show user");
-                comander.chooseShowAllUser();
+                String name = inputer.inputString("Enter product name: ");
+                List rs = comander.chooseSearchProductByName(name);
+                System.out.println(rs.size() + " results found!");
+                for (Object r : rs) {
+                    System.out.println(r.toString());
+                }
+                inputer.inputString("Press enter to continue...");
                 break;
-            default:
+            case 3:
+
+                // Search Product By ID
+
+                inputer.inputString("Press enter to continue...");
+                break;
         }
     }
 
-    public void setUpManageBillMenu() {
+    public void setupManageUserMenu(int userManagerChoice) {
+        switch (userManagerChoice) {
+            case 1:
+                comander.chooseShowAllUser();
+                inputer.inputString("Press enter to continue...");
+                break;
+            case 2:
 
+                // Delete User
+
+                inputer.inputString("Press enter to continue...");
+                break;
+            case 3:
+
+                // Update User
+
+                inputer.inputString("Press enter to continue...");
+                break;
+        }
+    }
+
+    public void setupManageBillMenu() {
+        // Bill Manager
     }
 }

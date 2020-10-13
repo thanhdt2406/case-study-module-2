@@ -7,9 +7,10 @@ import view.menu.AdminMenu;
 import view.menu.CustomerMenu;
 
 public class LoginMenu extends Menu {
-    private final String LOGIN_MENU = "|-- 1. Login----|" +
-            "|-- 2. Sign up--|" +
-            "|--3. Exit------|";
+    private final String LOGIN_MENU =
+              "|--1. Login-----|" +
+            "\n|--2. Sign up---|" +
+            "\n|--3. Exit------|";
     AdminMenu adminMenu = new AdminMenu();
     CustomerMenu customerMenu = new CustomerMenu();
 
@@ -30,7 +31,7 @@ public class LoginMenu extends Menu {
                     System.out.println("Exit program!!!");
                     System.exit(0);
                 default:
-                    System.out.println("Choose an option");
+                    System.out.println("No choice! Try again :D");
             }
         } while (true);
 
@@ -47,6 +48,9 @@ public class LoginMenu extends Menu {
             } else {
                 customerMenu.run();
             }
+        } else{
+            System.out.println("Wrong username or password!");
+            System.out.println("!~~_Login failed_~~!");
         }
     }
 
