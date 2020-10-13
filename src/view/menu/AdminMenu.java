@@ -44,7 +44,6 @@ public class AdminMenu extends Menu {
                 }
                 break;
             case 2:
-                System.out.println("2");
                 System.out.println(MANAGE_USER_MENU);
                 choice1 = inputer.inputInt("Your choice: ");
                 while (choice1 != 3) {
@@ -96,5 +95,6 @@ public class AdminMenu extends Menu {
     }
 
     public void setUpManageBillMenu() {
+
     }
 }

@@ -1,6 +1,5 @@
 package controller.manager.user;
 
-import controller.manager.product.ProductManager;
 import controller.storage.IOFileManager;
 import model.User;
 
@@ -15,21 +14,22 @@ public class UserManager implements IUserManager {
     private UserManager() {
         readData();
     }
-    public static UserManager getUserManager(){
-        if(userManager==null){
+
+    public static UserManager getUserManager() {
+        if (userManager == null) {
             userManager = new UserManager();
         }
         return userManager;
     }
 
 
-    public boolean login(String username, String password){
-        if (username.equals("admin") && password.equals("admin")){
+    public boolean login(String username, String password) {
+        if (username.equals("admin") && password.equals("admin")) {
             currentUser.setRole(User.ROLE_ADMIN);
             return true;
         }
-        for (User ele : listUser.values()){
-            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)){
+        for (User ele : listUser.values()) {
+            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)) {
                 currentUser = ele;
                 System.out.println("login success!");
                 return true;
@@ -44,7 +44,7 @@ public class UserManager implements IUserManager {
 
     private void readData() {
         IOFileManager ioFileManager = IOFileManager.getInstance();
-        if(ioFileManager.isEmpty("data/user.dat")){
+        if (ioFileManager.isEmpty("data/user.dat")) {
             return;
         }
         try {
@@ -65,6 +65,10 @@ public class UserManager implements IUserManager {
         }
     }
 
+    public HashMap<String, User> getListUser() {
+        return listUser;
+    }
+
     @Override
     public void addUser(User user) {
         listUser.put(user.getUserName(), user);
@@ -74,8 +78,8 @@ public class UserManager implements IUserManager {
     @Override
     public void showAllUser() {
         System.out.println("manage show user");
-        System.out.println("map"+listUser);
-        for (User ele : listUser.values()){
+        System.out.println("map" + listUser);
+        for (User ele : listUser.values()) {
             System.out.println(ele.toString());
         }
     }
