@@ -4,7 +4,7 @@ import model.Bill;
 
 import java.util.HashMap;
 
-public class BillManager implements IBillManager {
+public class BillManager {
     private HashMap<Integer, Bill> billMap = new HashMap<>();
     private int key =0;
     public void addBill(Bill bill){

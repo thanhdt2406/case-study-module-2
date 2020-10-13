@@ -12,7 +12,7 @@ import java.util.List;
 
 
 public class ProductManager implements IProductManager, SearchProduct {
-    private List<Product> products = new ArrayList<>();
+    private List<Product> productList = new ArrayList<>();
     private List<Product> iPhoneList;
     private List<Product> watchList;
     private List<Product> accessoriesList;
@@ -21,22 +21,29 @@ public class ProductManager implements IProductManager, SearchProduct {
 
     public ProductManager() {
         crawlData();
-        products.addAll(iPhoneList);
-        products.addAll(watchList);
-        products.addAll(accessoriesList);
-        products.addAll(tabletList);
+        productList.addAll(iPhoneList);
+        productList.addAll(watchList);
+        productList.addAll(accessoriesList);
+        productList.addAll(tabletList);
     }
 
-    private void crawlData(){
+    private void crawlData() {
         IPhoneCrawler iphoneCrawler = new IPhoneCrawler();
         AccessoriesCrawler accessoriesCrawler = new AccessoriesCrawler();
         TabletCrawler tabletCrawler = new TabletCrawler();
         WatchCrawler watchCrawler = new WatchCrawler();
-
         iphoneCrawler.start();
         tabletCrawler.start();
-        watchCrawler.run();
-        accessoriesCrawler.run();
+        watchCrawler.start();
+        accessoriesCrawler.start();
+        try{
+            iphoneCrawler.join();
+            tabletCrawler.join();
+            watchCrawler.join();
+            accessoriesCrawler.join();
+        } catch (Exception e){
+            e.printStackTrace();
+        }
 
         iPhoneList = iphoneCrawler.getIPhoneList();
         tabletList = tabletCrawler.getTabletList();
@@ -45,33 +52,45 @@ public class ProductManager implements IProductManager, SearchProduct {
 
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getProductList() {
+        return productList;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     public int getNextID() {
-        nextID = products.get(products.size() - 1).getProductID();
+        nextID = productList.get(productList.size() - 1).getProductID();
         return nextID + 1;
     }
 
     @Override
     public void addProduct(Product product) {
-        products.add(product);
+        productList.add(product);
     }
 
     @Override
     public void showProducts() {
-        for (Product ele : products) {
+        for (Product ele : productList) {
             System.out.println(ele.toString());
         }
     }
 
+    public boolean isExist(int id) {
+        if (productList.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < productList.size(); i++) {
+            if (productList.get(i).getProductID() == id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
-    public void updateProduct() {
+    public void updateProduct(int id) {
 
     }
 
@@ -83,11 +102,11 @@ public class ProductManager implements IProductManager, SearchProduct {
 
     @Override
     public HashMap<Integer, Product> searchByName(String name) {
-        HashMap<Integer,Product> result = new HashMap<>();
-        for (int i = 0; i < products.size(); i++) {
-            String productName = products.get(i).getName();
-            if (productName.contains(name)){
-                result.put(i+1,products.get(i));
+        HashMap<Integer, Product> result = new HashMap<>();
+        for (int i = 0; i < productList.size(); i++) {
+            String productName = productList.get(i).getName();
+            if (productName.contains(name)) {
+                result.put(i + 1, productList.get(i));
             }
         }
         return result;
