@@ -1,10 +1,11 @@
 package model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bill {
+public class Bill implements Serializable{
     private int billID;
     private int customerID;
     private int totalPrice;
