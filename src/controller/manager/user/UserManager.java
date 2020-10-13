@@ -13,7 +13,6 @@ public class UserManager implements IUserManager {
     private static UserManager userManager = new UserManager();
 
     private UserManager() {
-        System.out.println("creaadf");
         readData();
     }
     public static UserManager getUserManager(){

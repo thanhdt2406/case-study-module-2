@@ -35,7 +35,6 @@ public class AdminMenu extends Menu {
                 "\n|--4. Update user----|";
         switch (choice) {
             case 1:
-                System.out.println("1");
                 System.out.println(PRODUCT_MENU);
                 int choice1 = inputer.inputInt("Your choice: ");
                 while (choice1 != 4) {
@@ -72,14 +71,15 @@ public class AdminMenu extends Menu {
             case 3:
                 name = inputer.inputString("Enter product name: ");
                 List rs = comander.chooseSearchProductByName(name);
-                System.out.println(rs.size()+" results found");
-                for(int i=0;i< rs.size();i++){
+                System.out.println(rs.size() + " results found");
+                for (int i = 0; i < rs.size(); i++) {
                     System.out.println(rs.get(i).toString());
                 }
                 break;
             default:
         }
     }
+
     public void setUpManageUserMenu(int choice) {
         switch (choice) {
             case 1:
@@ -96,17 +96,5 @@ public class AdminMenu extends Menu {
     }
 
     public void setUpManageBillMenu() {
-//        ProductManager managerProduct = new ProductManager();
-//        int choice = inputer.inputInt();
-//        System.out.println(PRODUCT_MENU);
-//        switch (choice){
-//            case 1:
-//                managerProduct.addProduct();
-//                break;
-//            case 2:
-//                managerProduct.showProducts();
-//                break;
-//            default:
-//        }
     }
 }
