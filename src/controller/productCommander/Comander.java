@@ -6,27 +6,23 @@ import model.User;
 import java.util.HashMap;
 import java.util.List;
 
-public class userComander {
+public class Comander {
     private Command showAllProduct;
     private Command addUser;
     private Command showAllUser;
     private Command searchProductByName;
 
-    public userComander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser) {
+    public Comander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser) {
         this.showAllProduct = showAllProduct;
         this.addUser = addUser;
         this.showAllUser = showAllUser;
         this.searchProductByName = searchProductByName;
     }
 
-    public userComander(Command showAllProduct) {
+    public Comander(Command showAllProduct) {
         this.showAllProduct = showAllProduct;
     }
 
-    //    public userComander(Command showAllProduct, Command searchProductByName) {
-//        this.showAllProduct = showAllProduct;
-//        this.searchProductByName = searchProductByName;
-//    }
 
     public void chooseShowAllProduct(){
         showAllProduct.excuse(new Product());
