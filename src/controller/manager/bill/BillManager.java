@@ -54,5 +54,10 @@ public class BillManager {
         return false;
     }
 
-
+    public Bill searchByID(int ID){
+        if(billMap.containsKey(ID)){
+            return billMap.get(ID);
+        }
+        return null;
+    }
 }
