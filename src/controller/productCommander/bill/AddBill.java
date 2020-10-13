@@ -8,7 +8,7 @@ import model.Product;
 import java.util.List;
 
 public class AddBill implements Command<Bill,Bill> {
-    BillManager manager = new BillManager();
+    BillManager manager = BillManager.getBillManager();
 
     public AddBill(BillManager manager) {
         this.manager = manager;

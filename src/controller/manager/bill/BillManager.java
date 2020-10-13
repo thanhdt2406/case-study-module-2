@@ -8,9 +8,17 @@ import java.util.HashMap;
 
 public class BillManager implements IBillManager {
     private HashMap<Integer, Bill> billMap;
+    public static BillManager billManager;
 
-    public BillManager() {
+    private BillManager() {
         readData();
+    }
+
+    public static BillManager getBillManager(){
+        if(billManager==null){
+            billManager = new BillManager();
+        }
+        return billManager;
     }
 
     private void readData() {

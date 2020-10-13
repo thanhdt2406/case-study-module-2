@@ -52,7 +52,7 @@ public class AdminMenu extends Menu {
                     System.out.println("___________________________________________________");
                     System.out.println(USER_MANAGER_MENU);
                     userManagerChoice = inputer.inputInt("Your choice: ");
-                    setupManageUserMenu(userManagerChoice);
+                    setupUserManagerMenu(userManagerChoice);
                 }
                 while (userManagerChoice != 4);
                 break;
@@ -84,7 +84,7 @@ public class AdminMenu extends Menu {
         }
     }
 
-    public void setupManageUserMenu(int userManagerChoice) {
+    public void setupUserManagerMenu(int userManagerChoice) {
         switch (userManagerChoice) {
             case 1:
                 commander.chooseShowAllUser();

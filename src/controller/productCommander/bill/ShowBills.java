@@ -3,8 +3,9 @@ package controller.productCommander.bill;
 import controller.manager.bill.BillManager;
 import controller.productCommander.Command;
 
+
 public class ShowBills implements Command {
-    BillManager manager = new BillManager();
+    BillManager manager = BillManager.getBillManager();
 
     public ShowBills(BillManager manager) {
         this.manager = manager;

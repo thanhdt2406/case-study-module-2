@@ -4,7 +4,7 @@ import controller.manager.bill.BillManager;
 import controller.productCommander.Command;
 
 public class SearchBill implements Command<Void, Integer> {
-    BillManager manager = new BillManager();
+    BillManager manager = BillManager.getBillManager();
 
     public SearchBill(BillManager manager) {
         this.manager = manager;
