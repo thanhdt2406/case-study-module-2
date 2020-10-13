@@ -7,7 +7,6 @@ import controller.io.crawler.WatchCrawler;
 import model.Product;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -18,13 +17,21 @@ public class ProductManager implements IProductManager, SearchProduct {
     private List<Product> accessoriesList;
     private List<Product> tabletList;
     private int nextID;
+    private static ProductManager productManager;
 
-    public ProductManager() {
+    private ProductManager() {
         crawlData();
         productList.addAll(iPhoneList);
         productList.addAll(watchList);
         productList.addAll(accessoriesList);
         productList.addAll(tabletList);
+    }
+
+    public static ProductManager getProductManager(){
+        if(productManager==null){
+            productManager = new ProductManager();
+        }
+        return productManager;
     }
 
     private void crawlData() {
@@ -49,7 +56,6 @@ public class ProductManager implements IProductManager, SearchProduct {
         tabletList = tabletCrawler.getTabletList();
         watchList = watchCrawler.getWatchList();
         accessoriesList = accessoriesCrawler.getAccessoriesList();
-
     }
 
     public List<Product> getProductList() {

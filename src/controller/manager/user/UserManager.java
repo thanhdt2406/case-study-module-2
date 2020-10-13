@@ -6,13 +6,14 @@ import model.User;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class UserManager implements IUserManager<User> {
+public class UserManager implements IUserManager {
     private HashMap<String, User> listUser;
     private User currentUser = new User();
 
     public UserManager() {
         readData();
     }
+
 
     public boolean login(String username, String password){
         if (username.equals("admin") && password.equals("admin")){
@@ -33,7 +34,7 @@ public class UserManager implements IUserManager<User> {
         return currentUser;
     }
 
-    private void readData(){
+    private void readData() {
         IOFileManager ioFileManager = new IOFileManager();
         try {
             listUser = ioFileManager.readData("data/user.dat");
@@ -44,10 +45,10 @@ public class UserManager implements IUserManager<User> {
         }
     }
 
-    private void writeData(){
+    private void writeData() {
         IOFileManager ioFileManager = new IOFileManager();
         try {
-            ioFileManager.writeData(listUser,"data/user.dat");
+            ioFileManager.writeData(listUser, "data/user.dat");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +56,7 @@ public class UserManager implements IUserManager<User> {
 
     @Override
     public boolean addUser(User user) {
-        listUser.put(user.getUserName(),user);
+        listUser.put(user.getUserName(), user);
         writeData();
         return false;
     }
@@ -70,12 +71,60 @@ public class UserManager implements IUserManager<User> {
     }
 
     @Override
-    public boolean deleteUser() {
+    public boolean deleteUser(String userName) {
+        readData();
+        if (listUser.containsKey(userName)) {
+            listUser.remove(userName);
+            writeData();
+            return true;
+        }
         return false;
     }
 
     @Override
-    public boolean editUser() {
+    public boolean editUser(String userName, String password, String fullName, int phoneNumber, String address) {
+        readData();
+        if (listUser.containsKey(userName)) {
+            User user = new User(userName, password, fullName, phoneNumber, address);
+            listUser.replace(userName, user);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean editUserPassword(String userName, String password) {
+        readData();
+        if (listUser.containsKey(userName)) {
+            listUser.get(userName).setPassword(password);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean editUserName(String userName, String fullName) {
+        readData();
+        if (listUser.containsKey(userName)) {
+            listUser.get(userName).setFullName(fullName);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean editUserPhoneNumber(String userName, int phoneNumber) {
+        readData();
+        if (listUser.containsKey(userName)) {
+            listUser.get(userName).setPhoneNumber(phoneNumber);
+            return true;
+        }
+        return false;
+    }
+
+    public boolean editUserAddress(String userName, String address) {
+        readData();
+        if (listUser.containsKey(userName)) {
+            listUser.get(userName).setAddress(address);
+            return true;
+        }
         return false;
     }
 }
