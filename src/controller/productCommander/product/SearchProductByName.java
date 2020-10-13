@@ -2,8 +2,9 @@ package controller.productCommander.product;
 
 import controller.manager.product.ProductManager;
 import controller.productCommander.Command;
+import model.Product;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class SearchProductByName implements Command<String> {
     ProductManager manager = new ProductManager();
@@ -13,7 +14,7 @@ public class SearchProductByName implements Command<String> {
     }
 
     @Override
-    public HashMap excuse(String o) {
+    public List<Product> excuse(String o) {
         return manager.searchByName(o);
     }
 }

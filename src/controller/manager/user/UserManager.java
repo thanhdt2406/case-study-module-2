@@ -13,8 +13,6 @@ public class UserManager implements IUserManager<User> {
         return false;
     }
 
-
-
     @Override
     public void showAllUser() {
         for (User ele : listUser.values()){

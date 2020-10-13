@@ -12,6 +12,8 @@ import model.Product;
 import model.User;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
 
 
 public class MenuDemo {
@@ -96,9 +98,11 @@ public class MenuDemo {
             case 3:
                 System.out.println("Enter product name: ");
                 name = inputer.inputString();
-                HashMap rs = userComander.chooseSearchProductByName(name);
-                System.out.println(rs.size()+" results found");
-                System.out.println(rs.values());
+                List<Product> rs = userComander.chooseSearchProductByName(name);
+                System.out.println(rs.size() + " results found");
+                for(int i=0;i< rs.size();i++){
+                    System.out.println(rs.get(i).toString());
+                }
                 break;
             default:
         }

@@ -2,9 +2,10 @@ package controller.productCommander.userAcount;
 
 import controller.manager.user.UserManager;
 import controller.productCommander.Command;
+import model.Product;
 import model.User;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class AddUser implements Command<User> {
     UserManager manager = new UserManager();
@@ -14,7 +15,7 @@ public class AddUser implements Command<User> {
     }
 
     @Override
-    public HashMap excuse(User user) {
+    public List<Product> excuse(User user) {
         manager.addUser(user);
         return null;
     }

@@ -74,12 +74,12 @@ public class ProductManager implements IProductManager, SearchProduct {
     }
 
     @Override
-    public HashMap<Integer, Product> searchByName(String name) {
-        HashMap<Integer, Product> result = new HashMap<>();
+    public List<Product> searchByName(String name) {
+        List<Product> result = new ArrayList<>();
         for (int i = 0; i < productList.size(); i++) {
             String productName = productList.get(i).getName();
             if (productName.contains(name)) {
-                result.put(i + 1, productList.get(i));
+                result.add(productList.get(i));
             }
         }
         return result;

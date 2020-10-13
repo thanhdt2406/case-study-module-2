@@ -3,8 +3,9 @@ package controller.manager.product;
 import model.Product;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface SearchProduct {
-    HashMap<Integer, Product> searchByName(String name);
+   List<Product> searchByName(String name);
     Product searchByID(int id);
 }

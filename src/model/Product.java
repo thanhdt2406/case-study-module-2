@@ -1,10 +1,9 @@
 package model;
 
 public class Product {
-    ;
-    protected int productID;
-    protected String name;
-    protected int price;
+    private int productID;
+    private String name;
+    private int price;
 
     public Product() {
     }

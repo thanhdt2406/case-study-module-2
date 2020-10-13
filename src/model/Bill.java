@@ -1,50 +1,49 @@
 package model;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bill {
     private int billID;
-    private int IDseller;
-    private int IDcustomer;
+    private int customerID;
     private int totalPrice;
+    private List<Product> productList;
+    private static int ID = 0;
+    private LocalDate date;
 
-    public Bill() {
-    }
-
-    public Bill(int billID, int IDseller, int IDcustomer, int totalPrice) {
-        this.billID = billID;
-        this.IDseller = IDseller;
-        this.IDcustomer = IDcustomer;
-        this.totalPrice = totalPrice;
-    }
-
-    public void setBillID(int billID) {
-        this.billID = billID;
-    }
-
-    public void setIDseller(int IDseller) {
-        this.IDseller = IDseller;
-    }
-
-    public void setIDcustomer(int IDcustomer) {
-        this.IDcustomer = IDcustomer;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
+    public Bill(int customerID) {
+        this.billID = ID++;
+        this.productList = new ArrayList<>();
+        this.date = LocalDate.now();
+        this.totalPrice = 0;
     }
 
     public int getBillID() {
         return billID;
     }
 
-    public int getIDseller() {
-        return IDseller;
-    }
-
-    public int getIDcustomer() {
-        return IDcustomer;
+    public int getCustomerID() {
+        return customerID;
     }
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    public void addProduct(Product product) {
+        this.productList.add(product);
+        this.totalPrice += product.getPrice();
+    }
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "billID=" + billID +
+                ", customerID=" + customerID +
+                ", totalPrice=" + totalPrice +
+                ", productList=" + productList +
+                ", date=" + date +
+                '}';
     }
 }

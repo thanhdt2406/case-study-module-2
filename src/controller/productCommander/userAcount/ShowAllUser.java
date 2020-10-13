@@ -2,8 +2,9 @@ package controller.productCommander.userAcount;
 
 import controller.manager.user.UserManager;
 import controller.productCommander.Command;
+import model.Product;
 
-import java.util.HashMap;
+import java.util.List;
 
 public class ShowAllUser implements Command {
     UserManager manager = new UserManager();
@@ -13,7 +14,7 @@ public class ShowAllUser implements Command {
     }
 
     @Override
-    public HashMap excuse(Object o) {
+    public List<Product> excuse(Object o) {
         manager.showAllUser();
         return null;
     }

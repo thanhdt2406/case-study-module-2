@@ -4,6 +4,7 @@ import model.Product;
 import model.User;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class userComander {
     private Command showAllProduct;
@@ -31,7 +32,7 @@ public class userComander {
         showAllProduct.excuse(new Product());
     }
 
-    public HashMap chooseSearchProductByName(String name){
+    public List chooseSearchProductByName(String name){
 
         return searchProductByName.excuse(name);
     }
