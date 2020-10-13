@@ -1,7 +1,7 @@
 package controller.manager.user;
 
 import controller.storage.IOFileManager;
-import model.user.User;
+import model.User;
 
 import java.io.IOException;
 import java.util.HashMap;

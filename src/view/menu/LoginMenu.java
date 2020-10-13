@@ -1,7 +1,7 @@
 package view.menu;
 
 import controller.manager.user.UserManager;
-import model.user.User;
+import model.User;
 
 public class LoginMenu extends Menu {
     private final String LOGIN_MENU =

@@ -80,7 +80,6 @@ public class AdminMenu extends Menu {
                 inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-                // Search Product By ID
                 setSearchProductById();
                 inputer.inputString("Press enter to continue...");
                 break;

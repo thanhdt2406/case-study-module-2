@@ -1,7 +1,7 @@
 package controller.productCommander;
 
 import model.Product;
-import model.user.User;
+import model.User;
 
 import java.util.List;
 

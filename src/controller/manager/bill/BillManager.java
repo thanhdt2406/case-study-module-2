@@ -6,7 +6,7 @@ import model.Bill;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class BillManager {
+public class BillManager implements IBillManager {
     private HashMap<Integer, Bill> billMap;
 
     public BillManager() {
@@ -36,11 +36,13 @@ public class BillManager {
         }
     }
 
+    @Override
     public void addBill(Bill bill) {
         billMap.put(bill.getBillID(), bill);
         writeData();
     }
 
+    @Override
     public void showBill() {
         for (Bill bill : billMap.values()) {
             System.out.println(bill.toString());
@@ -48,6 +50,7 @@ public class BillManager {
         System.out.println(billMap);
     }
 
+    @Override
     public boolean deleteBill(int ID) {
         if (billMap.containsKey(ID)) {
             billMap.remove(ID);
@@ -55,6 +58,11 @@ public class BillManager {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Bill searchBill(int id) {
+        return billMap.get(id);
     }
 
     public Bill searchByID(int ID) {

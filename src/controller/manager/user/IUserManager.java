@@ -1,7 +1,7 @@
 package controller.manager.user;
 
 
-import model.user.User;
+import model.User;
 
 public interface IUserManager{
     void addUser(User user);
