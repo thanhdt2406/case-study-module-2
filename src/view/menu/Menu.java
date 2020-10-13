@@ -24,7 +24,7 @@ public class Menu {
     protected Inputer inputer = new Inputer();
 
     protected ProductManager productManager = ProductManager.getProductManager();
-    protected UserManager userManager = new UserManager();
+    protected UserManager userManager = UserManager.getUserManager();
 
     protected Command showAllProduct = new ShowAllProduct(productManager);
     protected Command searchProduct = new SearchProductByName(productManager);

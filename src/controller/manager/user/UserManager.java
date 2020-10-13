@@ -1,5 +1,6 @@
 package controller.manager.user;
 
+import controller.manager.product.ProductManager;
 import controller.storage.IOFileManager;
 import model.User;
 
@@ -9,9 +10,17 @@ import java.util.HashMap;
 public class UserManager implements IUserManager {
     private HashMap<String, User> listUser;
     private User currentUser = new User();
+    private static UserManager userManager = new UserManager();
 
-    public UserManager() {
+    private UserManager() {
+        System.out.println("creaadf");
         readData();
+    }
+    public static UserManager getUserManager(){
+        if(userManager==null){
+            userManager = new UserManager();
+        }
+        return userManager;
     }
 
     public boolean login(String username, String password) {
@@ -20,7 +29,7 @@ public class UserManager implements IUserManager {
             return true;
         }
         for (User ele : listUser.values()) {
-            if (ele.getUserName().equals(username) && ele.getPassword() == password) {
+            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)) {
                 currentUser = ele;
                 return true;
             }
