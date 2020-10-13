@@ -14,7 +14,7 @@ public class BillManager {
     }
 
     private void readData() {
-        IOFileManager ioFileManager = new IOFileManager();
+        IOFileManager ioFileManager = IOFileManager.getInstance();
         try {
             billMap = ioFileManager.readData("data/listBill.dat");
         } catch (IOException e) {
@@ -25,7 +25,7 @@ public class BillManager {
     }
 
     private void writeData() {
-        IOFileManager ioFileManager = new IOFileManager();
+        IOFileManager ioFileManager = IOFileManager.getInstance();
         try {
             ioFileManager.writeData(billMap, "data/listBill.dat");
         } catch (IOException e) {

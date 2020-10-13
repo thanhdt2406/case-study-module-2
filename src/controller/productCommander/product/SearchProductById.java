@@ -6,7 +6,7 @@ import model.Product;
 
 import java.util.List;
 
-public class SearchProductById implements Command<Integer> {
+public class SearchProductById implements Command<List,Integer> {
     ProductManager manager = ProductManager.getProductManager();
 
     public SearchProductById(ProductManager manager) {
@@ -14,7 +14,7 @@ public class SearchProductById implements Command<Integer> {
     }
 
     @Override
-    public List<Product> excuse(Integer i) {
+    public List excuse(Integer i) {
         manager.searchByID(i.intValue());
         return null;
     }

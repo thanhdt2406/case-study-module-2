@@ -17,7 +17,7 @@ public class User implements Serializable {
     public final static int ROLE_ADMIN = 1;
 
     public User() {
-
+        this.role = ROLE_CUSTOMER;
     }
 
     public User(String username) {

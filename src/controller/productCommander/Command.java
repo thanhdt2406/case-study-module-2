@@ -4,6 +4,6 @@ import model.Product;
 
 import java.util.List;
 
-public interface Command<T> {
-     List<Product> excuse(T t);
+public interface Command<E,T> {
+     E excuse(T t);
 }

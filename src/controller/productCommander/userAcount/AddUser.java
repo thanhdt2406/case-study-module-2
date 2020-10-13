@@ -7,7 +7,7 @@ import model.User;
 
 import java.util.List;
 
-public class AddUser implements Command<User> {
+public class AddUser implements Command<List,User> {
     UserManager manager = UserManager.getUserManager();
 
     public AddUser(UserManager manager) {
@@ -15,7 +15,7 @@ public class AddUser implements Command<User> {
     }
 
     @Override
-    public List<Product> excuse(User user) {
+    public List excuse(User user) {
         manager.addUser(user);
         return null;
     }

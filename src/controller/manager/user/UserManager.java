@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 
 public class UserManager implements IUserManager {
-    private HashMap<String, User> listUser;
+    private HashMap<String, User> listUser = new HashMap<>();
     private User currentUser = new User();
     private static UserManager userManager = new UserManager();
 
@@ -23,14 +23,16 @@ public class UserManager implements IUserManager {
         return userManager;
     }
 
-    public boolean login(String username, String password) {
-        if (username.equals("admin") && password.equals("admin")) {
+
+    public boolean login(String username, String password){
+        if (username.equals("admin") && password.equals("admin")){
             currentUser.setRole(User.ROLE_ADMIN);
             return true;
         }
-        for (User ele : listUser.values()) {
-            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)) {
+        for (User ele : listUser.values()){
+            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)){
                 currentUser = ele;
+                System.out.println("login success!");
                 return true;
             }
         }
@@ -42,7 +44,7 @@ public class UserManager implements IUserManager {
     }
 
     private void readData() {
-        IOFileManager ioFileManager = new IOFileManager();
+        IOFileManager ioFileManager = IOFileManager.getInstance();
         try {
             listUser = ioFileManager.readData("data/user.dat");
         } catch (IOException e) {
@@ -53,7 +55,7 @@ public class UserManager implements IUserManager {
     }
 
     private void writeData() {
-        IOFileManager ioFileManager = new IOFileManager();
+        IOFileManager ioFileManager = IOFileManager.getInstance();
         try {
             ioFileManager.writeData(listUser, "data/user.dat");
         } catch (IOException e) {
@@ -62,18 +64,18 @@ public class UserManager implements IUserManager {
     }
 
     @Override
-    public boolean addUser(User user) {
+    public void addUser(User user) {
         listUser.put(user.getUserName(), user);
         writeData();
-        return false;
     }
 
     @Override
     public void showAllUser() {
-        System.out.println(listUser);
-//        for (User ele : listUser.values()){
-//            System.out.println(ele.toString());
-//        }
+        System.out.println("manage show user");
+        System.out.println("map"+listUser);
+        for (User ele : listUser.values()){
+            System.out.println(ele.toString());
+        }
     }
 
     @Override

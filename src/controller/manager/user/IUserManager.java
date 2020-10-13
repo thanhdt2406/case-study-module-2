@@ -4,7 +4,7 @@ package controller.manager.user;
 import model.User;
 
 public interface IUserManager{
-    boolean addUser(User user);
+    void addUser(User user);
 
     void showAllUser();
 

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 public class ProductManager implements IProductManager, SearchProduct {
-    private List<Product> productList = new ArrayList<>();
+    private static List<Product> productList = new ArrayList<>();
     private List<Product> iPhoneList;
     private List<Product> watchList;
     private List<Product> accessoriesList;
