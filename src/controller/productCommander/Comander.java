@@ -10,12 +10,14 @@ public class Comander {
     private Command addUser;
     private Command showAllUser;
     private Command searchProductByName;
+    private Command addBill;
 
-    public Comander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser) {
+    public Comander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser, Command addBill) {
         this.showAllProduct = showAllProduct;
         this.addUser = addUser;
         this.showAllUser = showAllUser;
         this.searchProductByName = searchProductByName;
+        this.addBill = addBill;
     }
 
     public Comander(Command showAllProduct) {
@@ -27,9 +29,9 @@ public class Comander {
         showAllProduct.excuse(new Product());
     }
 
-    public List chooseSearchProductByName(String name){
+    public List<Product> chooseSearchProductByName(String name){
 
-        return searchProductByName.excuse(name);
+        return (List<Product>) searchProductByName.excuse(name);
     }
 
     public void chooseAddUser(User user){
