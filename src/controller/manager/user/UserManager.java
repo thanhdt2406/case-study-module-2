@@ -11,18 +11,18 @@ public class UserManager implements IUserManager<User> {
     private User currentUser = new User();
 
     public UserManager() {
-        listUser = new HashMap<>();
+        readData();
     }
 
     public boolean login(String username, String password){
-        readData();
         if (username.equals("admin") && password.equals("admin")){
             currentUser.setRole(User.ROLE_ADMIN);
             return true;
         }
         for (User ele : listUser.values()){
-            if (ele.getUserName().equals(username) && ele.getPassword() == password){
+            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)){
                 currentUser = ele;
+                System.out.println("login success!");
                 return true;
             }
         }
@@ -62,6 +62,8 @@ public class UserManager implements IUserManager<User> {
 
     @Override
     public void showAllUser() {
+        System.out.println("manage show user");
+        System.out.println("map"+listUser);
         for (User ele : listUser.values()){
             System.out.println(ele.toString());
         }

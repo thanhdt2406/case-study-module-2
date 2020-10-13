@@ -14,7 +14,7 @@ import java.util.regex.Pattern;
 public abstract class CrawlerManager extends Thread {
     public final String productRegex = "woocommerce-loop-product__title\">(.*?)</h2>";
     public final String priceRegex = "woocommerce-Price-amount amount\">(.*?)&nbsp;";
-    private static int ID;
+    private static int ID = 0;
 
     private String getContentFromURL(String link) throws IOException {
         URL url = new URL(link);

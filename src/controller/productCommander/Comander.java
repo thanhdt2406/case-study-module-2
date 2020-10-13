@@ -37,6 +37,7 @@ public class Comander {
     }
 
     public void chooseShowAllUser(){
+        System.out.println("choose show user");
         showAllUser.excuse(new User());
     }
 }

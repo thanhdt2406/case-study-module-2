@@ -12,6 +12,9 @@ public class AdminMenu extends Menu {
     }
 
     public void run() {
+        String MAIN_MENU = "|--1. product management--|" +
+                "\n|--2. User management--|" +
+                "\n|--3. Exit-------------|";
         System.out.println(MAIN_MENU);
         int choice = inputer.inputInt("Your choice: ");
         while (choice != 4) {
@@ -22,6 +25,14 @@ public class AdminMenu extends Menu {
     }
 
     public void setUpMainMenu(int choice) {
+        String PRODUCT_MENU = "|--1. Add product" +
+                "\n|--2. show products--|" +
+                "\n|--3. Search by name--|" +
+                "\n|--4. Exit------------|";
+        String MANAGE_USER_MENU = "|--1. Add user-------|" +
+                "\n|--2. Show all users-|" +
+                "\n|--3. Delete user----|" +
+                "\n|--4. Update user----|";
         switch (choice) {
             case 1:
                 System.out.println("1");
@@ -35,14 +46,13 @@ public class AdminMenu extends Menu {
                 break;
             case 2:
                 System.out.println("2");
-                System.out.println(USER_MENU);
+                System.out.println(MANAGE_USER_MENU);
                 choice1 = inputer.inputInt("Your choice: ");
                 while (choice1 != 3) {
                     setUpManageUserMenu(choice1);
-                    System.out.println(USER_MENU);
+                    System.out.println(MANAGE_USER_MENU);
                     choice1 = inputer.inputInt("Your choice: ");
                 }
-
                 break;
             default:
                 System.out.println("choose an option!");
@@ -61,7 +71,7 @@ public class AdminMenu extends Menu {
                 break;
             case 3:
                 name = inputer.inputString("Enter product name: ");
-                List<Product> rs = comander.chooseSearchProductByName(name);
+                List rs = comander.chooseSearchProductByName(name);
                 System.out.println(rs.size()+" results found");
                 for(int i=0;i< rs.size();i++){
                     System.out.println(rs.get(i).toString());
@@ -78,6 +88,7 @@ public class AdminMenu extends Menu {
                 comander.chooseAddUser(user);
                 break;
             case 2:
+                System.out.println("show user");
                 comander.chooseShowAllUser();
                 break;
             default:

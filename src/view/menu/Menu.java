@@ -11,15 +11,9 @@ import controller.productCommander.userAcount.AddUser;
 import controller.productCommander.userAcount.ShowAllUser;
 
 public class Menu {
-    protected final String MAIN_MENU = "|--1. product management--|" +
-            "\n|--2. User management--|" +
-            "\n|--3. Exit-------------|";
-    protected final String PRODUCT_MENU = "|--1. Add product" +
-            "\n|--2. show products--|" +
-            "\n|--3. Search by name--|" +
-            "\n|--4. Exit------------|";
-    protected final String USER_MENU = "|--1. Add user" +
-            "\n|--2. show users";
+    protected final String CUSTOMER_MENU = "|--1. Add user" +
+            "\n|--2. show users" +
+            "\n|--3. Exit";
 
     protected Inputer inputer = new Inputer();
 

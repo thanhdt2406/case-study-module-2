@@ -16,6 +16,7 @@ public class LoginMenu extends Menu {
     public void run(){
         int choice;
         do {
+            System.out.println("___________________________________________________");
             System.out.println(LOGIN_MENU);
             choice = inputer.inputInt("enter your choice: ");
             switch (choice){
@@ -38,8 +39,10 @@ public class LoginMenu extends Menu {
         boolean loginSuccess = userManager.login(username, password);
         if (loginSuccess){
             if (userManager.getCurrentUser().getRole() == User.ROLE_ADMIN){
+                System.out.println("admin");
                 adminMenu.run();
             }else {
+                System.out.println("customer");
                 customerMenu.run();
             }
         }
