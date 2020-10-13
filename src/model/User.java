@@ -9,6 +9,8 @@ public class User implements Serializable {
     private String userName;
     private String password;
 
+    private Bill bill = new Bill();
+
     private boolean isAdmin;
 
     public User() {
@@ -74,5 +76,12 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
+
+    public Bill getBill() {
+        return bill;
     }
 }

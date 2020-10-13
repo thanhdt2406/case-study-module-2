@@ -9,7 +9,7 @@ public class Bill implements Serializable {
     private int billID;
     private int customerID;
     private int totalPrice;
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();
     private static int ID = 0;
     private LocalDate date;
 
@@ -33,6 +33,18 @@ public class Bill implements Serializable {
 
     public int getTotalPrice() {
         return totalPrice;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public static int getID() {
+        return ID;
+    }
+
+    public LocalDate getDate() {
+        return date;
     }
 
     public void addProduct(Product product) {

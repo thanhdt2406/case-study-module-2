@@ -37,11 +37,22 @@ public class Menu {
     protected Command deleteBill = new DeleteBill(billManager);
     protected Command showBill = new ShowBills(billManager);
     protected Command searchBill = new SearchBill(billManager);
-    protected Command addProductToBill = new AddProductToBill();
 
     protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, addBill, searchProductById);
 
-    protected Commander billCommander = new Commander(addBill,deleteBill,showBill,searchBill,addProductToBill);
+    protected Commander billCommander = new Commander(addBill,deleteBill,showBill,searchBill);
+
+    public Product getProduct(int id){
+        List<Product> list = productManager.getProductList();
+        Product product = new Product();
+        product = null;
+        for(Product ele : list){
+            if (ele.getProductID() == id){
+                product = ele;
+            }
+        }
+        return product;
+    }
 
     public void setSearchProductByName() {
         String name = inputer.inputString("Enter product name: ");

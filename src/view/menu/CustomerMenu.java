@@ -1,16 +1,26 @@
 package view.menu;
 
+import controller.productCommander.Command;
+import controller.productCommander.Commander;
+import controller.productCommander.bill.AddProductToBill;
+import model.Bill;
+import model.Product;
 import model.User;
+
+import java.util.List;
 
 
 public class CustomerMenu extends Menu {
-    //private Customer customer = new Customer();
     private User customer = userManager.getCurrentUser();
+    private Bill currenBill = customer.getBill();
+    private Command addProductToBill = new AddProductToBill(currenBill);
 
+    private Commander billCommander = new Commander(addProductToBill);
     public CustomerMenu() {
     }
 
     public void run() {
+
         int choice;
         do {
             String CUSTOMER_MENU = "|--1. Search product-------|" +
@@ -42,13 +52,20 @@ public class CustomerMenu extends Menu {
                 break;
             case 2:
                 System.out.println("add to cart");
-                //List<Product> cart = customer.getCart();
+                int id = inputer.inputInt("Enter product ID: ");
+                Product product = getProduct(id);
+                billCommander.chooseAddProductToBill(product);
                 break;
             case 3:
                 System.out.println("buy product");
+                billCommander.chooseAddBill(currenBill);
                 break;
             case 4:
                 System.out.println("show bill");
+                List<Product> list = currenBill.getProductList();
+                for (Product ele : list){
+                    System.out.println(ele.toString());
+                }
                 break;
             case 5:
                 System.out.println("update account");

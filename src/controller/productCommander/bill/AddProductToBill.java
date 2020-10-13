@@ -6,6 +6,11 @@ import model.Product;
 
 public class AddProductToBill implements Command<Object,Product> {
     Bill bill = new Bill();
+
+    public AddProductToBill(Bill bill) {
+        this.bill = bill;
+    }
+
     @Override
     public Object excuse(Product product) {
         bill.addProduct(product);

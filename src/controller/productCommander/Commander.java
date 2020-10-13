@@ -30,11 +30,14 @@ public class Commander {
         this.addBill = addBill;
     }
 
-    public Commander(Command addBill, Command deleteBill, Command showBill, Command searchBill, Command addProductToBill) {
+    public Commander(Command addBill, Command deleteBill, Command showBill, Command searchBill) {
         this.addBill = addBill;
         this.deleteBill = deleteBill;
         this.showBill = showBill;
         this.searchBill = searchBill;
+    }
+
+    public Commander(Command addProductToBill) {
         this.addProductToBill = addProductToBill;
     }
 
@@ -50,7 +53,6 @@ public class Commander {
         return (Product) searchProductByID.excuse(id);
     }
 
-
     public void chooseAddUser(User user) {
         addUser.excuse(user);
     }
@@ -61,17 +63,23 @@ public class Commander {
     }
 
 
-    public void chooseAddBill(Bill bill){
+    public void chooseAddBill(Bill bill) {
         addBill.excuse(bill);
     }
-    public void chooseDeleteBill(int id){
+
+    public void chooseDeleteBill(int id) {
         deleteBill.excuse(id);
     }
-    public void chooseShowBill(){
+
+    public void chooseShowBill() {
         showBill.excuse(new Object());
     }
-    public void chooseSearchBill(int id){
+
+    public void chooseSearchBill(int id) {
         searchBill.excuse(id);
+    }
+    public void chooseAddProductToBill(Product product){
+        addProductToBill.excuse(product);
     }
 
 }
