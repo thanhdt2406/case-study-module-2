@@ -1,11 +1,9 @@
 package controller.io;
 
-public class Inputer extends InputFromKeyBoard{
+import java.util.Scanner;
 
-    @Override
-    public boolean input() {
-        return false;
-    }
+public class Inputer{
+     private Scanner scanner = new Scanner(System.in);
 
     public int inputInt(){
         int value = 0;
