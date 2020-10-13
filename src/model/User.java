@@ -9,11 +9,12 @@ public class User implements Serializable {
     private String userName;
     private String password;
 
-    private Bill bill = new Bill();
+    private Bill bill;
 
     private boolean isAdmin;
 
     public User() {
+        this.bill = new Bill();
         this.isAdmin = false;
     }
 

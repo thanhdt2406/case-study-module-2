@@ -19,11 +19,11 @@ public class AdminMenu extends Menu {
             System.out.println("___________________________________________________");
             System.out.println(ADMIN_MENU);
             choice = inputer.inputInt("Your choice: ");
-            setUpMainMenu(choice);
+            setupAdminMenu(choice);
         } while (choice != 4);
     }
 
-    public void setUpMainMenu(int choice) {
+    public void setupAdminMenu(int choice) {
         String PRODUCT_MENU =
                 "\n|-----PRODUCT MENU-----|" +
                 "\n|--1. Show products----|" +
@@ -36,6 +36,13 @@ public class AdminMenu extends Menu {
                 "\n|--2. Delete user-------|" +
                 "\n|--3. Update user-------|" +
                 "\n|--4. Back--------------|";
+        String BILL_MANAGER_MENU =
+                "\n|---BILL MANAGER MENU---|" +
+                        "\n|--1. Show all bills----|" +
+                        "\n|--2. Delete bill-------|" +
+                        "\n|--3. Search bill-------|" +
+                        "\n|--4. Back--------------|";
+
         switch (choice) {
             case 1:
                 int productChoice;
@@ -57,7 +64,14 @@ public class AdminMenu extends Menu {
                 while (userManagerChoice != 4);
                 break;
             case 3:
-                //????????????????????
+                int billManagerChoice;
+                do{
+                    System.out.println("_________________BILL_MANAGER_MENU__________________");
+                    System.out.println(BILL_MANAGER_MENU);
+                    billManagerChoice = inputer.inputInt("Your choice: ");
+                    setupManageBillMenu(billManagerChoice);
+                }
+                while (billManagerChoice != 4);
                 break;
             case 5:
                 System.out.println("Exit program!!!");
@@ -105,7 +119,24 @@ public class AdminMenu extends Menu {
         }
     }
 
-    public void setupManageBillMenu() {
-        System.out.println();
+    public void setupManageBillMenu(int choice) {
+        switch (choice){
+            case 1:
+                System.out.println("show bill");
+                billCommander.chooseShowBill();
+                break;
+            case 2:
+                System.out.println("delete bill");
+                int id = inputer.inputInt("enter bill id: ");
+                billCommander.chooseDeleteBill(id);
+                break;
+            case 3:
+                System.out.println("search bill");
+                id = inputer.inputInt("Enter bill id: ");
+                billCommander.chooseSearchBill(id);
+                break;
+            default:
+                System.out.println("choose an option!");
+        }
     }
 }

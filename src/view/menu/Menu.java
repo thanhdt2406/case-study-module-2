@@ -33,14 +33,13 @@ public class Menu {
     protected Command showAllUser = new ShowAllUser(userManager);
     protected Command addUser = new AddUser(userManager);
 
-    protected Command addBill = new AddBill(billManager);
     protected Command deleteBill = new DeleteBill(billManager);
     protected Command showBill = new ShowBills(billManager);
     protected Command searchBill = new SearchBill(billManager);
 
-    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, addBill, searchProductById);
+    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, searchProductById);
 
-    protected Commander billCommander = new Commander(addBill,deleteBill,showBill,searchBill);
+    protected Commander billCommander = new Commander(deleteBill,showBill,searchBill);
 
     public Product getProduct(int id){
         List<Product> list = productManager.getProductList();

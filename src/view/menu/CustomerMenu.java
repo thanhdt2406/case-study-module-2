@@ -2,6 +2,7 @@ package view.menu;
 
 import controller.productCommander.Command;
 import controller.productCommander.Commander;
+import controller.productCommander.bill.AddBill;
 import controller.productCommander.bill.AddProductToBill;
 import model.Bill;
 import model.Product;
@@ -14,8 +15,10 @@ public class CustomerMenu extends Menu {
     private User customer = userManager.getCurrentUser();
     private Bill currenBill = customer.getBill();
     private Command addProductToBill = new AddProductToBill(currenBill);
+    private Command addBill = new AddBill(billManager);
 
-    private Commander billCommander = new Commander(addProductToBill);
+    private Commander billCommander = new Commander(addProductToBill, addBill);
+
     public CustomerMenu() {
     }
 
@@ -59,13 +62,19 @@ public class CustomerMenu extends Menu {
             case 3:
                 System.out.println("buy product");
                 billCommander.chooseAddBill(currenBill);
+                currenBill = null;
                 break;
             case 4:
                 System.out.println("show bill");
                 List<Product> list = currenBill.getProductList();
-                for (Product ele : list){
-                    System.out.println(ele.toString());
+                if (list.size() != 0) {
+                    for (Product ele : list) {
+                        System.out.println(ele.toString());
+                    }
+                } else {
+                    System.out.println("nothing in cart!");
                 }
+
                 break;
             case 5:
                 System.out.println("update account");

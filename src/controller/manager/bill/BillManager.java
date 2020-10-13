@@ -4,10 +4,11 @@ import controller.storage.IOFileManager;
 import model.Bill;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class BillManager implements IBillManager {
-    private HashMap<Integer, Bill> billMap;
+public class BillManager implements IBillManager, Serializable {
+    private HashMap<Integer, Bill> billMap = new HashMap<>();
     public static BillManager billManager;
 
     private BillManager() {
@@ -55,11 +56,12 @@ public class BillManager implements IBillManager {
         for (Bill bill : billMap.values()) {
             System.out.println(bill.toString());
         }
-        System.out.println(billMap);
+        //System.out.println(billMap);
     }
 
     @Override
     public boolean deleteBill(int ID) {
+        System.out.println("delete bill");
         if (billMap.containsKey(ID)) {
             billMap.remove(ID);
             writeData();

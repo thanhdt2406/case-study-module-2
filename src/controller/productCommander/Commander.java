@@ -21,23 +21,22 @@ public class Commander {
     private Command addProductToBill;
 
 
-    public Commander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser, Command addBill, Command searchProductByID) {
+    public Commander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser, Command searchProductByID) {
         this.showAllProduct = showAllProduct;
         this.addUser = addUser;
         this.showAllUser = showAllUser;
         this.searchProductByName = searchProductByName;
         this.searchProductByID = searchProductByID;
-        this.addBill = addBill;
     }
 
-    public Commander(Command addBill, Command deleteBill, Command showBill, Command searchBill) {
-        this.addBill = addBill;
+    public Commander( Command deleteBill, Command showBill, Command searchBill) {
         this.deleteBill = deleteBill;
         this.showBill = showBill;
         this.searchBill = searchBill;
     }
 
-    public Commander(Command addProductToBill) {
+    public Commander(Command addProductToBill,Command addBill) {
+        this.addBill = addBill;
         this.addProductToBill = addProductToBill;
     }
 
