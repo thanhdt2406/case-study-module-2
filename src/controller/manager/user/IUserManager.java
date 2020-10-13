@@ -1,12 +1,14 @@
 package controller.manager.user;
 
 
-public interface IUserManager<T>{
-    boolean addUser(T t);
+import model.User;
+
+public interface IUserManager{
+    boolean addUser(User user);
 
     void showAllUser();
 
-    boolean deleteUser();
+    boolean deleteUser(String userName);
 
-    boolean editUser();
+    boolean editUser(String userName,String password, String fullName, int phoneNumber, String address);
 }

@@ -23,7 +23,7 @@ public class Menu {
 
     protected Inputer inputer = new Inputer();
 
-    protected ProductManager productManager = new ProductManager();
+    protected ProductManager productManager = ProductManager.getProductManager();
     protected UserManager userManager = new UserManager();
 
     protected Command showAllProduct = new ShowAllProduct(productManager);
