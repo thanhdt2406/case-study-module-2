@@ -56,12 +56,13 @@ public class Bill implements Serializable {
 
     @Override
     public String toString() {
-        return "Bill{" +
-                "billID=" + billID +
-                ", customerID=" + customerID +
-                ", totalPrice=" + totalPrice +
-                ", productList=" + productList +
-                ", date=" + date +
-                '}';
+        return String.format("|id: %-5d|Username: %-12s|total price: %-10d",billID,customerID,totalPrice);
+//        return "Bill{" +
+//                "billID=" + billID +
+//                ", customerID=" + customerID +
+//                ", totalPrice=" + totalPrice +
+//                ", productList=" + productList +
+//                ", date=" + date +
+//                '}';
     }
 }
