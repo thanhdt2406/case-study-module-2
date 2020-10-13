@@ -1,16 +1,19 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
-    private int userID;
     private String fullName;
     private int phoneNumber;
     private String address;
-    private int role;
     private String userName;
     private String password;
 
+    private int role;
+
+    private List<Product> cart = new ArrayList<>();
 
     public final static int ROLE_CUSTOMER = 0;
     public final static int ROLE_ADMIN = 1;
@@ -31,12 +34,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public int getUserID() {
-        return userID;
+    public List<Product> getCart() {
+        return cart;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setCart(List<Product> cart) {
+        this.cart = cart;
     }
 
     public String getFullName() {
