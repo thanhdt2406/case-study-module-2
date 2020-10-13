@@ -1,10 +1,6 @@
 package view.menu;
 
-import model.Product;
-import model.user.Customer;
-import model.user.User;
-
-import java.util.List;
+import model.User;
 
 
 public class CustomerMenu extends Menu {

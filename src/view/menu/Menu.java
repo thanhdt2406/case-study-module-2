@@ -13,7 +13,6 @@ import controller.productCommander.product.ShowAllProduct;
 import controller.productCommander.userAcount.AddUser;
 import controller.productCommander.userAcount.ShowAllUser;
 import model.Product;
-import model.user.User;
 
 import java.util.List;
 
