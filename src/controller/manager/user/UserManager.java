@@ -1,17 +1,20 @@
 package controller.manager.user;
 
+import controller.storage.IOFileManager;
 import model.User;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 public class UserManager implements IUserManager<User> {
-    private HashMap<String, User> listUser = new HashMap();
+    private HashMap<String, User> listUser;
     private User currentUser = new User();
 
     public UserManager() {
     }
 
     public boolean login(String username, String password){
+        readData();
         if (username.equals("admin") && password.equals("admin")){
             currentUser.setRole(User.ROLE_ADMIN);
             return true;
@@ -29,9 +32,30 @@ public class UserManager implements IUserManager<User> {
         return currentUser;
     }
 
+    private void readData(){
+        IOFileManager ioFileManager = new IOFileManager();
+        try {
+            listUser = ioFileManager.readData("data/user.dat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void writeData(){
+        IOFileManager ioFileManager = new IOFileManager();
+        try {
+            ioFileManager.writeData(listUser,"data/user.dat");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public boolean addUser(User user) {
         listUser.put(user.getUserName(),user);
+        writeData();
         return false;
     }
 

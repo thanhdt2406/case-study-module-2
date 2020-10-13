@@ -9,7 +9,7 @@ public class App {
     CustomerMenu customerMenu = new CustomerMenu();
 
     UserManager userManager = new UserManager();
-    User currenUser = new User();
+    User currentUser = new User();
 
     Inputer inputer = new Inputer();
     public void login(){
