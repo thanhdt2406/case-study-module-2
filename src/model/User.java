@@ -1,16 +1,19 @@
 package model;
 
+import java.util.HashMap;
+
 public class User {
     private int userID;
     private String fullName;
     private String phoneNumber;
     private String address;
-    private String role;
+    private int role;
     private String userName;
     private String password;
 
-    public final int ROLE_CUSTOMER = 0;
-    public final int ROLE_ADMIN = 1;
+
+    public final static int ROLE_CUSTOMER = 0;
+    public final static int ROLE_ADMIN = 1;
 
     public User() {
 
@@ -60,11 +63,11 @@ public class User {
         this.address = address;
     }
 
-    public String getRole() {
+    public int getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 

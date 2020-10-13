@@ -14,11 +14,10 @@ import model.User;
 import java.util.HashMap;
 
 
-public class MenuDemo {
+public class AdminMenu {
     private final String MAIN_MENU = "|--1. product management--|" +
             "\n|--2. User management--|" +
-            "\n|--3. Exit-------------|" +
-            "\nYour choice:";
+            "\n|--3. Exit-------------|";
     private final String PRODUCT_MENU = "|--1. Add product" +
             "\n|--2. show products--|" +
             "\n|--3. Search by name--|" +
@@ -37,18 +36,18 @@ public class MenuDemo {
     private Command showAllUser = new ShowAllUser(userManager);
     private Command addUser = new AddUser(userManager);
 
-    private userComander userComander = new userComander(showAllProduct, searchProduct, addUser, showAllUser);
+    private Comander Comander = new Comander(showAllProduct, searchProduct, addUser, showAllUser);
 
-    public MenuDemo() {
+    public AdminMenu() {
     }
 
     public void run() {
         System.out.println(MAIN_MENU);
-        int choice = inputer.inputInt();
+        int choice = inputer.inputInt("Your choice: ");
         while (choice != 4) {
             setUpMainMenu(choice);
             System.out.println(MAIN_MENU);
-            choice = inputer.inputInt();
+            choice = inputer.inputInt("Your choice: ");
         }
     }
 
@@ -57,21 +56,21 @@ public class MenuDemo {
             case 1:
                 System.out.println("1");
                 System.out.println(PRODUCT_MENU);
-                int choice1 = inputer.inputInt();
+                int choice1 = inputer.inputInt("Your choice: ");
                 while (choice1 != 4) {
                     setUpProductMenu(choice1);
                     System.out.println(PRODUCT_MENU);
-                    choice1 = inputer.inputInt();
+                    choice1 = inputer.inputInt("Your choice: ");
                 }
                 break;
             case 2:
                 System.out.println("2");
                 System.out.println(USER_MENU);
-                choice1 = inputer.inputInt();
+                choice1 = inputer.inputInt("Your choice: ");
                 while (choice1 != 3) {
                     setUpManageUserMenu(choice1);
                     System.out.println(USER_MENU);
-                    choice1 = inputer.inputInt();
+                    choice1 = inputer.inputInt("Your choice: ");
                 }
 
                 break;
@@ -81,42 +80,33 @@ public class MenuDemo {
     }
 
     public void setUpProductMenu(int choice) {
-
         switch (choice) {
             case 1:
-                System.out.println("enter product name: ");
-                String name = inputer.inputString();
-                System.out.println("enter price: ");
-                int price = inputer.inputInt();
+                String name = inputer.inputString("enter product name: ");
+                int price = inputer.inputInt("enter price");
                 Product product = new Product(productManager.getNextID(), name, price);
                 break;
             case 2:
-                userComander.chooseShowAllProduct();
+                Comander.chooseShowAllProduct();
                 break;
             case 3:
-                System.out.println("Enter product name: ");
-                name = inputer.inputString();
-                HashMap rs = userComander.chooseSearchProductByName(name);
+                name = inputer.inputString("Enter product name: ");
+                HashMap rs = Comander.chooseSearchProductByName(name);
                 System.out.println(rs.size()+" results found");
                 System.out.println(rs.values());
                 break;
             default:
         }
-
     }
-
     public void setUpManageUserMenu(int choice) {
         switch (choice) {
             case 1:
-
-                System.out.println("enter username: ");
-//                //sc.nextLine();
-                String name = inputer.inputString();
+                String name = inputer.inputString("enter username: ");
                 User user = new User(name);
-                userComander.chooseAddUser(user);
+                Comander.chooseAddUser(user);
                 break;
             case 2:
-                userComander.chooseShowAllUser();
+                Comander.chooseShowAllUser();
                 break;
             default:
         }
