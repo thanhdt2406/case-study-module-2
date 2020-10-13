@@ -1,11 +1,10 @@
 package view;
 
-import view.menu.AdminMenu;
-import view.menu.App;
+import view.menu.LoginMenu;
 
 public class Main {
     public static void main(String[] args) {
-        App app = new App();
-        app.login();
+        LoginMenu loginMenu = new LoginMenu();
+        loginMenu.run();
     }
 }

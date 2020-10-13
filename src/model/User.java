@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class User {
     private int userID;
     private String fullName;
-    private String phoneNumber;
+    private int phoneNumber;
     private String address;
     private int role;
     private String userName;
@@ -23,7 +23,7 @@ public class User {
         this.userName = username;
     }
 
-    public User(String fullName, String phoneNumber, String address, String userName, String password) {
+    public User(String userName, String password,String fullName, int phoneNumber, String address) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -47,11 +47,11 @@ public class User {
         this.fullName = fullName;
     }
 
-    public String getPhoneNumber() {
+    public int getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

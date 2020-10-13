@@ -1,44 +1,12 @@
 package view.menu;
 
-import controller.io.Inputer;
-import controller.manager.product.ProductManager;
-import controller.manager.user.UserManager;
-import controller.productCommander.*;
-import controller.productCommander.product.SearchProductByName;
-import controller.productCommander.product.ShowAllProduct;
-import controller.productCommander.userAcount.AddUser;
-import controller.productCommander.userAcount.ShowAllUser;
 import model.Product;
 import model.User;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
 
 
-public class AdminMenu {
-    private final String MAIN_MENU = "|--1. product management--|" +
-            "\n|--2. User management--|" +
-            "\n|--3. Exit-------------|";
-    private final String PRODUCT_MENU = "|--1. Add product" +
-            "\n|--2. show products--|" +
-            "\n|--3. Search by name--|" +
-            "\n|--4. Exit------------|";
-    private final String USER_MENU = "|--1. Add user" +
-            "\n|--2. show users";
-
-    private Inputer inputer = new Inputer();
-
-    private ProductManager productManager = new ProductManager();
-    private UserManager userManager = new UserManager();
-
-    private Command showAllProduct = new ShowAllProduct(productManager);
-    private Command searchProduct = new SearchProductByName(productManager);
-
-    private Command showAllUser = new ShowAllUser(userManager);
-    private Command addUser = new AddUser(userManager);
-
-    private Comander Comander = new Comander(showAllProduct, searchProduct, addUser, showAllUser);
+public class AdminMenu extends Menu {
 
     public AdminMenu() {
     }
@@ -89,11 +57,11 @@ public class AdminMenu {
                 Product product = new Product(productManager.getNextID(), name, price);
                 break;
             case 2:
-                Comander.chooseShowAllProduct();
+                comander.chooseShowAllProduct();
                 break;
             case 3:
                 name = inputer.inputString("Enter product name: ");
-                List<Product> rs = Comander.chooseSearchProductByName(name);
+                List<Product> rs = comander.chooseSearchProductByName(name);
                 System.out.println(rs.size()+" results found");
                 for(int i=0;i< rs.size();i++){
                     System.out.println(rs.get(i).toString());
@@ -107,10 +75,10 @@ public class AdminMenu {
             case 1:
                 String name = inputer.inputString("enter username: ");
                 User user = new User(name);
-                Comander.chooseAddUser(user);
+                comander.chooseAddUser(user);
                 break;
             case 2:
-                Comander.chooseShowAllUser();
+                comander.chooseShowAllUser();
                 break;
             default:
         }

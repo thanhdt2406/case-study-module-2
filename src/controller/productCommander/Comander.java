@@ -3,7 +3,6 @@ package controller.productCommander;
 import model.Product;
 import model.User;
 
-import java.util.HashMap;
 import java.util.List;
 
 public class Comander {

@@ -11,6 +11,7 @@ public class UserManager implements IUserManager<User> {
     private User currentUser = new User();
 
     public UserManager() {
+        listUser = new HashMap<>();
     }
 
     public boolean login(String username, String password){
