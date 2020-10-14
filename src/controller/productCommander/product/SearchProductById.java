@@ -5,7 +5,7 @@ import controller.productCommander.Command;
 import model.Product;
 
 public class SearchProductById implements Command<Product,Integer> {
-    ProductManager manager = ProductManager.getProductManager();
+    ProductManager manager;
 
     public SearchProductById(ProductManager manager) {
         this.manager = manager;
@@ -13,6 +13,6 @@ public class SearchProductById implements Command<Product,Integer> {
 
     @Override
     public Product excuse(Integer i) {
-       return manager.searchByID(i.intValue());
+       return manager.searchByID(i);
     }
 }

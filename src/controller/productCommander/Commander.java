@@ -3,7 +3,6 @@ package controller.productCommander;
 import model.Bill;
 import model.Product;
 import model.User;
-
 import java.util.List;
 
 public class Commander {

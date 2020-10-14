@@ -5,10 +5,8 @@ import controller.io.crawler.IPhoneCrawler;
 import controller.io.crawler.TabletCrawler;
 import controller.io.crawler.WatchCrawler;
 import model.Product;
-
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class ProductManager implements IProductManager, SearchProduct {
     private static List<Product> productList = new ArrayList<>();
@@ -16,7 +14,6 @@ public class ProductManager implements IProductManager, SearchProduct {
     private List<Product> watchList;
     private List<Product> accessoriesList;
     private List<Product> tabletList;
-    private int nextID;
     private static ProductManager productManager;
 
     private ProductManager() {
@@ -62,40 +59,30 @@ public class ProductManager implements IProductManager, SearchProduct {
         return productList;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
-
-    public int getNextID() {
-        nextID = productList.get(productList.size() - 1).getProductID();
-        return nextID + 1;
-    }
-
-
     @Override
     public void showProducts() {
-        for (Product ele : productList) {
-            System.out.println(ele.toString());
+        for (Product product : productList) {
+            System.out.println(product.toString());
         }
     }
 
     @Override
     public List<Product> searchByName(String name) {
         List<Product> result = new ArrayList<>();
-        for (int i = 0; i < productList.size(); i++) {
-            String productName = productList.get(i).getName();
+        for (Product product : productList) {
+            String productName = product.getName();
             if (productName.contains(name)) {
-                result.add(productList.get(i));
+                result.add(product);
             }
         }
         return result;
     }
 
     @Override
-    public Product searchByID(int id) {
-        for (int i = 0; i < productList.size(); i++) {
-            if (productList.get(i).getProductID() == id) {
-                return productList.get(i);
+    public Product searchByID(int ID) {
+        for (Product product : productList) {
+            if (product.getProductID() == ID) {
+                return product;
             }
         }
         return null;

@@ -5,7 +5,7 @@ import controller.productCommander.Command;
 import model.Bill;
 
 public class SearchBill implements Command<Bill, Integer> {
-    BillManager manager = BillManager.getBillManager();
+    BillManager manager;
 
     public SearchBill(BillManager manager) {
         this.manager = manager;
@@ -13,6 +13,6 @@ public class SearchBill implements Command<Bill, Integer> {
 
     @Override
     public Bill excuse(Integer id) {
-       return manager.searchBill(id.intValue());
+       return manager.searchBill(id);
     }
 }

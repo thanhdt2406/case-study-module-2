@@ -7,7 +7,7 @@ import model.Product;
 import java.util.List;
 
 public class ShowAllProduct implements Command {
-    ProductManager manager = ProductManager.getProductManager();
+    ProductManager manager;
 
     public ShowAllProduct(ProductManager manager) {
         this.manager = manager;

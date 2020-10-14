@@ -7,7 +7,7 @@ import model.Product;
 import java.util.List;
 
 public class SearchProductByName implements Command<List, String> {
-    ProductManager manager = ProductManager.getProductManager();
+    ProductManager manager;
 
     public SearchProductByName(ProductManager manager) {
         this.manager = manager;

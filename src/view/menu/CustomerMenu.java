@@ -14,13 +14,11 @@ import java.util.List;
 
 public class CustomerMenu extends Menu {
     private User customer = userManager.getCurrentUser();
-    ;
     private Bill currentBill = customer.getCurrentBill();
     private Command addProductToBill = new AddProductToBill(currentBill);
     private Command addBill = new AddBill(billManager);
 
     private Commander billCommander = new Commander(addProductToBill, addBill);
-    List<Product> list = currentBill.getProductList();
     public CustomerMenu() {
     }
 

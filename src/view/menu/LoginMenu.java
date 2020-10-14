@@ -1,17 +1,15 @@
 package view.menu;
 
-import controller.manager.user.UserManager;
 import model.User;
 
 public class LoginMenu extends Menu {
-    private final String LOGIN_MENU =
-            "|--1. Login-----|" +
-                    "\n|--2. Sign up---|" +
-                    "\n|--3. Exit------|";
     AdminMenu adminMenu = new AdminMenu();
     CustomerMenu customerMenu = new CustomerMenu();
 
     public void run() {
+        String LOGIN_MENU = "|--1. Login-----|" +
+                        "\n|--2. Sign up---|" +
+                        "\n|--3. Exit------|";
         int choice;
         do {
             System.out.println("___________________________________________________");

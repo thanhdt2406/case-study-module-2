@@ -1,9 +1,8 @@
 package controller.manager.user;
 
-
 import model.User;
 
-public interface IUserManager{
+public interface IUserManager {
     void addUser(User user);
 
     void showAllUser();

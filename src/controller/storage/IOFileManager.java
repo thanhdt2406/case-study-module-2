@@ -17,10 +17,7 @@ public class IOFileManager<T, E> {
 
     public boolean isEmpty(String fileName){
         File file = new File(fileName);
-        if(file.length()==0){
-            return true;
-        }
-        return false;
+        return file.length() == 0;
     }
     public HashMap<T, E> readData(String fileName) throws IOException, ClassNotFoundException {
         FileInputStream fileInputStream = new FileInputStream(fileName);

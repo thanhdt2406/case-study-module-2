@@ -5,7 +5,7 @@ import controller.productCommander.Command;
 import model.Bill;
 
 public class AddBill implements Command<Bill,Bill> {
-    BillManager billManager = BillManager.getBillManager();
+    BillManager billManager;
 
     public AddBill(BillManager billManager) {
         this.billManager = billManager;

@@ -10,7 +10,7 @@ public class ValidateAccount implements IValidate{
 
     @Override
     public boolean validate(String regex) {
-        Pattern pattern = Pattern.compile("^[\\S]\\w{5,29}$");
+        Pattern pattern = Pattern.compile("^[\\S]\\w{4,29}$");
         Matcher matcher = pattern.matcher(regex);
         return matcher.matches();
     }

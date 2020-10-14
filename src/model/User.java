@@ -18,10 +18,6 @@ public class User implements Serializable {
         this.isAdmin = false;
     }
 
-    public User(String username) {
-        this.userName = username;
-    }
-
     public User(String userName, String password,String fullName, int phoneNumber, String address) {
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
@@ -67,10 +63,6 @@ public class User implements Serializable {
         return userName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -78,16 +70,13 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
+
     public void setCurrentBill(Bill currentBill) {
         this.currentBill = currentBill;
     }
 
     public Bill getCurrentBill() {
         return currentBill;
-    }
-
-    public void createNewBill(){
-        this.currentBill = new Bill();
     }
 
     @Override

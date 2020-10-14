@@ -2,7 +2,6 @@ package controller.manager.user;
 
 import controller.storage.IOFileManager;
 import model.User;
-
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -28,11 +27,11 @@ public class UserManager implements IUserManager {
             currentUser.setRole(true);
             return true;
         }
-        for (User ele : listUser.values()) {
-            if (ele.getUserName().equals(username) && ele.getPassword().equals(password)) {
-                currentUser = ele;
+        for (User user : listUser.values()) {
+            if (user.getUserName().equals(username) && user.getPassword().equals(password)) {
+                currentUser = user;
                 currentUser.setRole(false);
-                System.out.println("login success!");
+                System.out.println("!~~_Login successful_~~!");
                 return true;
             }
         }
@@ -50,9 +49,7 @@ public class UserManager implements IUserManager {
         }
         try {
             listUser = ioFileManager.readData("data/user.dat");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
     }
@@ -82,8 +79,8 @@ public class UserManager implements IUserManager {
             System.out.println("No customer account!");
             return;
         }
-        for (User ele : listUser.values()) {
-            System.out.println(ele.toString());
+        for (User user : listUser.values()) {
+            System.out.println(user.toString());
         }
     }
 

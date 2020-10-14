@@ -5,7 +5,7 @@ import controller.productCommander.Command;
 
 
 public class ShowBills implements Command {
-    BillManager manager = BillManager.getBillManager();
+    BillManager manager;
 
     public ShowBills(BillManager manager) {
         this.manager = manager;

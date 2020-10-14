@@ -5,7 +5,7 @@ import model.Bill;
 import model.Product;
 
 public class AddProductToBill implements Command<Object,Product> {
-    Bill bill = new Bill();
+    Bill bill;
 
     public AddProductToBill(Bill bill) {
         this.bill = bill;
@@ -14,6 +14,7 @@ public class AddProductToBill implements Command<Object,Product> {
     public void setBill(Bill bill) {
         this.bill = bill;
     }
+
     @Override
     public Object excuse(Product product) {
         bill.addProduct(product);

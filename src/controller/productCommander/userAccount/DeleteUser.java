@@ -4,7 +4,7 @@ import controller.manager.user.UserManager;
 import controller.productCommander.Command;
 
 public class DeleteUser implements Command<Object,String> {
-    UserManager manager = UserManager.getUserManager();
+    UserManager manager;
 
     public DeleteUser(UserManager manager) {
         this.manager = manager;

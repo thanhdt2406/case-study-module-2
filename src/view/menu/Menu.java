@@ -25,9 +25,7 @@ public class Menu {
 
     protected ProductManager productManager = ProductManager.getProductManager();
     protected UserManager userManager = UserManager.getUserManager();
-
     protected BillManager billManager = BillManager.getBillManager();
-
 
     protected Command showAllProduct = new ShowAllProduct(productManager);
     protected Command searchProductByName = new SearchProductByName(productManager);
@@ -42,17 +40,16 @@ public class Menu {
     protected Command showBill = new ShowBills(billManager);
     protected Command searchBill = new SearchBill(billManager);
 
-    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, searchProductById,deleteUser,updateUser);
+    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, searchProductById, deleteUser, updateUser);
+    protected Commander billCommander = new Commander(deleteBill, showBill, searchBill);
 
-    protected Commander billCommander = new Commander(deleteBill,showBill,searchBill);
-
-    public Product getProduct(int id){
+    public Product getProduct(int ID) {
         List<Product> list = productManager.getProductList();
-        Product product = new Product();
+        Product product;
         product = null;
-        for(Product ele : list){
-            if (ele.getProductID() == id){
-                product = ele;
+        for (Product product1 : list) {
+            if (product1.getProductID() == ID) {
+                product = product1;
             }
         }
         return product;
@@ -67,10 +64,10 @@ public class Menu {
         }
     }
 
-    public void searchProductById(){
-        int productID = inputer.inputInt("Enter product id: ");
+    public void searchProductById() {
+        int productID = inputer.inputInt("Enter product ID: ");
         Product rs = commander.chooseSearchProductByID(productID);
-        if(rs ==null){
+        if (rs == null) {
             System.out.println("Not found product!");
             return;
         }
@@ -79,19 +76,16 @@ public class Menu {
 
     public boolean isExistUser(String userName) {
         UserManager userManager = UserManager.getUserManager();
-        if (userManager.getListUser().containsKey(userName) || userName.equals("admin")) {
-            return true;
-        }
-        return false;
+        return userManager.getListUser().containsKey(userName) || userName.equals("admin");
     }
 
-    public void editUser(String userName){
+    public void editUser(String userName) {
         String password = inputer.inputString("Enter Password: ");
         String fullName = inputer.inputString("Enter your full name: ");
         int phoneNumber = inputer.inputInt("Enter your phone number: ");
         String address = inputer.inputString("Enter your address");
 
-        User user = new User(userName,password,fullName,phoneNumber,address);
+        User user = new User(userName, password, fullName, phoneNumber, address);
         commander.chooseUpdateUser(user);
     }
 

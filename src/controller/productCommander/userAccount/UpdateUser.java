@@ -5,7 +5,7 @@ import controller.productCommander.Command;
 import model.User;
 
 public class UpdateUser implements Command<Object,User> {
-    UserManager manager = UserManager.getUserManager();
+    UserManager manager;
 
     public UpdateUser(UserManager manager) {
         this.manager = manager;

@@ -7,7 +7,7 @@ import model.User;
 import java.util.List;
 
 public class AddUser implements Command<List,User> {
-    UserManager manager = UserManager.getUserManager();
+    UserManager manager;
 
     public AddUser(UserManager manager) {
         this.manager = manager;

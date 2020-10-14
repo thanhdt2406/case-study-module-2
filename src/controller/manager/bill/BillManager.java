@@ -61,13 +61,11 @@ public class BillManager implements IBillManager, Serializable {
         for (Bill bill : billMap.values()) {
             System.out.println(bill.toString()+"\n\n");
         }
-        //System.out.println(billMap);
     }
 
     @Override
     public boolean deleteBill(int ID) {
         readData();
-        System.out.println("delete bill");
         if (billMap.containsKey(ID)) {
             billMap.remove(ID);
             writeData();
@@ -80,13 +78,5 @@ public class BillManager implements IBillManager, Serializable {
     public Bill searchBill(int id) {
         readData();
         return billMap.get(id);
-    }
-
-    public Bill searchByID(int ID) {
-        readData();
-        if (billMap.containsKey(ID)) {
-            return billMap.get(ID);
-        }
-        return null;
     }
 }

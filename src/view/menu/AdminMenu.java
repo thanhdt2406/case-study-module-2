@@ -1,8 +1,5 @@
 package view.menu;
 
-
-import model.User;
-
 public class AdminMenu extends Menu {
 
     public AdminMenu() {
