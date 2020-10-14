@@ -52,14 +52,14 @@ public class LoginMenu extends Menu {
 
 
     public void signUp() {
-        String username = inputer.inputAccount("Enter Username: ");
+        String username = inputer.inputAccount("Enter Username (5-30 characters): ");
         while (isExistUser(username)) {
             System.out.println("User already exists");
             username = inputer.inputString("Please enter another username: ");
         }
-        String password = inputer.inputAccount("Enter Password: ");
+        String password = inputer.inputAccount("Enter Password (5-30 characters): ");
         String fullName = inputer.inputString("Enter your full name: ");
-        int phoneNumber = inputer.inputPhoneNumber("Enter your phone number: ");
+        int phoneNumber = inputer.inputPhoneNumber("Enter your phone number (0xxxxxxxxx): ");
         String address = inputer.inputString("Enter your address");
         User user = new User(username, password, fullName, phoneNumber, address);
         commander.chooseAddUser(user);
