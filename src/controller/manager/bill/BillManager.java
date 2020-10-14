@@ -10,6 +10,8 @@ import java.util.HashMap;
 public class BillManager implements IBillManager, Serializable {
     private HashMap<Integer, Bill> billMap = new HashMap<>();
     public static BillManager billManager;
+    private static int nextID = 0;
+
 
     private BillManager() {
         readData();
@@ -47,12 +49,15 @@ public class BillManager implements IBillManager, Serializable {
 
     @Override
     public void addBill(Bill bill) {
-        billMap.put(bill.getBillID(), bill);
+        readData();
+        bill.setBillID(nextID);
+        billMap.put(nextID++, bill);
         writeData();
     }
 
     @Override
     public void showBill() {
+        readData();
         for (Bill bill : billMap.values()) {
             System.out.println(bill.toString());
         }
@@ -61,6 +66,7 @@ public class BillManager implements IBillManager, Serializable {
 
     @Override
     public boolean deleteBill(int ID) {
+        readData();
         System.out.println("delete bill");
         if (billMap.containsKey(ID)) {
             billMap.remove(ID);
@@ -72,10 +78,12 @@ public class BillManager implements IBillManager, Serializable {
 
     @Override
     public Bill searchBill(int id) {
+        readData();
         return billMap.get(id);
     }
 
     public Bill searchByID(int ID) {
+        readData();
         if (billMap.containsKey(ID)) {
             return billMap.get(ID);
         }

@@ -9,12 +9,12 @@ public class User implements Serializable {
     private String userName;
     private String password;
 
-    private Bill bill;
+    private Bill currentBill;
 
     private boolean isAdmin;
 
     public User() {
-        this.bill = new Bill();
+        this.currentBill = new Bill();
         this.isAdmin = false;
     }
 
@@ -78,11 +78,16 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-    public void setBill(Bill bill) {
-        this.bill = bill;
+    public void setCurrentBill(Bill currentBill) {
+        this.currentBill = currentBill;
     }
 
-    public Bill getBill() {
-        return bill;
+    public Bill getCurrentBill() {
+        return currentBill;
     }
+
+    public void createNewBill(){
+        this.currentBill = new Bill();
+    }
+
 }

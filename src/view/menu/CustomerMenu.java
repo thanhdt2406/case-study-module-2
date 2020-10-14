@@ -12,9 +12,9 @@ import java.util.List;
 
 
 public class CustomerMenu extends Menu {
-    private User customer = userManager.getCurrentUser();
-    private Bill currenBill = customer.getBill();
-    private Command addProductToBill = new AddProductToBill(currenBill);
+    private User customer  = userManager.getCurrentUser();;
+    private Bill currentBill = customer.getCurrentBill();
+    private Command addProductToBill = new AddProductToBill(currentBill);
     private Command addBill = new AddBill(billManager);
 
     private Commander billCommander = new Commander(addProductToBill, addBill);
@@ -23,7 +23,7 @@ public class CustomerMenu extends Menu {
     }
 
     public void run() {
-
+        customer = userManager.getCurrentUser();
         int choice;
         do {
             String CUSTOMER_MENU = "|--1. Search product-------|" +
@@ -58,15 +58,22 @@ public class CustomerMenu extends Menu {
                 int id = inputer.inputInt("Enter product ID: ");
                 Product product = getProduct(id);
                 billCommander.chooseAddProductToBill(product);
+                currentBill.setTotalPrice(currentBill.getTotalPrice()+product.getPrice());
+                System.out.println(currentBill.getTotalPrice());
                 break;
             case 3:
                 System.out.println("buy product");
-                billCommander.chooseAddBill(currenBill);
-                currenBill = null;
+                currentBill.setUserName(customer.getUserName());
+                billCommander.chooseAddBill(currentBill);
+//                customer.createNewBill();
+//                currentBill = customer.getCurrentBill();
+                customer.setCurrentBill(new Bill());
+                currentBill = customer.getCurrentBill();
+                System.out.println(currentBill.getTotalPrice());
                 break;
             case 4:
                 System.out.println("show bill");
-                List<Product> list = currenBill.getProductList();
+                List<Product> list = currentBill.getProductList();
                 if (list.size() != 0) {
                     for (Product ele : list) {
                         System.out.println(ele.toString());

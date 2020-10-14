@@ -3,20 +3,17 @@ package controller.productCommander.bill;
 import controller.manager.bill.BillManager;
 import controller.productCommander.Command;
 import model.Bill;
-import model.Product;
-
-import java.util.List;
 
 public class AddBill implements Command<Bill,Bill> {
-    BillManager manager = BillManager.getBillManager();
+    BillManager billManager = BillManager.getBillManager();
 
-    public AddBill(BillManager manager) {
-        this.manager = manager;
+    public AddBill(BillManager billManager) {
+        this.billManager = billManager;
     }
 
     @Override
     public Bill excuse(Bill bill) {
-        manager.addBill(bill);
+        billManager.addBill(bill);
         return null;
     }
 }

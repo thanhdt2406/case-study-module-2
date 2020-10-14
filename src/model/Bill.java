@@ -7,28 +7,29 @@ import java.util.List;
 
 public class Bill implements Serializable {
     private int billID;
-    private int customerID;
+    private String userName;
     private int totalPrice;
     private List<Product> productList = new ArrayList<>();
-    private static int ID = 0;
     private LocalDate date;
 
     public Bill() {
-    }
 
-    public Bill(int customerID, List<Product> list) {
-        this.billID = ID++;
-        this.productList = new ArrayList<>();
-        this.date = LocalDate.now();
-        this.totalPrice = 0;
     }
 
     public int getBillID() {
         return billID;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public void setBillID(int billID) {
+        this.billID = billID;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public int getTotalPrice() {
@@ -39,24 +40,22 @@ public class Bill implements Serializable {
         return productList;
     }
 
-    public static int getID() {
-        return ID;
-    }
 
     public LocalDate getDate() {
         return date;
     }
 
     public void addProduct(Product product) {
-        this.productList.add(product);
-        this.totalPrice += product.getPrice();
+        productList.add(product);
     }
 
-
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     @Override
     public String toString() {
-        return String.format("|id: %-5d|Username: %-12s|total price: %-10d",billID,customerID,totalPrice);
+        return String.format("|id: %-5d|Username: %-12s|total price: %-10d",billID, userName,totalPrice);
 //        return "Bill{" +
 //                "billID=" + billID +
 //                ", customerID=" + customerID +
