@@ -52,13 +52,6 @@ public class LoginMenu extends Menu {
         }
     }
 
-    private boolean isExistUser(String userName) {
-        UserManager userManager = UserManager.getUserManager();
-        if (userManager.getListUser().containsKey(userName) || userName.equals("admin")) {
-            return true;
-        }
-        return false;
-    }
 
     public void signUp() {
         String username = inputer.inputString("Enter Username: ");

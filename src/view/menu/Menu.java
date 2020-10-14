@@ -11,7 +11,9 @@ import controller.productCommander.product.SearchProductById;
 import controller.productCommander.product.SearchProductByName;
 import controller.productCommander.product.ShowAllProduct;
 import controller.productCommander.userAcount.AddUser;
+import controller.productCommander.userAcount.DeleteUser;
 import controller.productCommander.userAcount.ShowAllUser;
+import controller.productCommander.userAcount.UpdateUser;
 import model.Product;
 
 import java.util.List;
@@ -32,12 +34,14 @@ public class Menu {
 
     protected Command showAllUser = new ShowAllUser(userManager);
     protected Command addUser = new AddUser(userManager);
+    protected Command deleteUser = new DeleteUser(userManager);
+    protected Command updateUser = new UpdateUser(userManager);
 
     protected Command deleteBill = new DeleteBill(billManager);
     protected Command showBill = new ShowBills(billManager);
     protected Command searchBill = new SearchBill(billManager);
 
-    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, searchProductById);
+    protected Commander commander = new Commander(showAllProduct, searchProductByName, addUser, showAllUser, searchProductById,deleteUser,updateUser);
 
     protected Commander billCommander = new Commander(deleteBill,showBill,searchBill);
 
@@ -68,5 +72,16 @@ public class Menu {
         System.out.println(rs.toString());
     }
 
+    public boolean isExistUser(String userName) {
+        UserManager userManager = UserManager.getUserManager();
+        if (userManager.getListUser().containsKey(userName) || userName.equals("admin")) {
+            return true;
+        }
+        return false;
+    }
+
+    public void editUser(){
+
+    }
 
 }

@@ -79,7 +79,6 @@ public class UserManager implements IUserManager {
     @Override
     public void showAllUser() {
         System.out.println("manage show user");
-        System.out.println("map" + listUser);
         for (User ele : listUser.values()) {
             System.out.println(ele.toString());
         }
@@ -97,11 +96,10 @@ public class UserManager implements IUserManager {
     }
 
     @Override
-    public boolean editUser(String userName, String password, String fullName, int phoneNumber, String address) {
+    public boolean editUser(User user) {
         readData();
-        if (listUser.containsKey(userName)) {
-            User user = new User(userName, password, fullName, phoneNumber, address);
-            listUser.replace(userName, user);
+        if (listUser.containsKey(user.getUserName())) {
+            listUser.replace(user.getUserName(), user);
             return true;
         }
         return false;

@@ -10,5 +10,5 @@ public interface IUserManager{
 
     boolean deleteUser(String userName);
 
-    boolean editUser(String userName,String password, String fullName, int phoneNumber, String address);
+    boolean editUser(User user);
 }

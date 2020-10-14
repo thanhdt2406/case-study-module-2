@@ -90,4 +90,8 @@ public class User implements Serializable {
         this.currentBill = new Bill();
     }
 
+    @Override
+    public String toString(){
+        return String.format("|Username: %-12s|Password: %-12s\n|Full name: %-30s\n|Phone number:%-15d\n|Address: %-50s",userName,password,fullName,phoneNumber,address);
+    }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 public class Commander {
     private Command addUser;
     private Command showAllUser;
+    private Command deleteUser, updateUser;
 
     private Command showAllProduct;
     private Command searchProductByName;
@@ -21,12 +22,15 @@ public class Commander {
     private Command addProductToBill;
 
 
-    public Commander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser, Command searchProductByID) {
+    public Commander(Command showAllProduct, Command searchProductByName, Command addUser, Command showAllUser, Command searchProductByID
+    , Command deleteUser, Command updateUser) {
         this.showAllProduct = showAllProduct;
         this.addUser = addUser;
         this.showAllUser = showAllUser;
         this.searchProductByName = searchProductByName;
         this.searchProductByID = searchProductByID;
+        this.deleteUser = deleteUser;
+        this.updateUser = updateUser;
     }
 
     public Commander( Command deleteBill, Command showBill, Command searchBill) {
@@ -43,11 +47,9 @@ public class Commander {
     public void chooseShowAllProduct() {
         showAllProduct.excuse(new Product());
     }
-
     public List<Product> chooseSearchProductByName(String name) {
         return (List<Product>) searchProductByName.excuse(name);
     }
-
     public Product chooseSearchProductByID(Integer id) {
         return (Product) searchProductByID.excuse(id);
     }
@@ -55,10 +57,15 @@ public class Commander {
     public void chooseAddUser(User user) {
         addUser.excuse(user);
     }
-
     public void chooseShowAllUser() {
         System.out.println("choose show user");
         showAllUser.excuse(new User());
+    }
+    public void chooseDeleteUser(String username){
+        deleteUser.excuse(username);
+    }
+    public void chooseUpdateUser(User user){
+        updateUser.excuse(user);
     }
 
 

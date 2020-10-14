@@ -1,6 +1,8 @@
 package view.menu;
 
 
+import model.User;
+
 public class AdminMenu extends Menu {
 
     public AdminMenu() {
@@ -105,15 +107,26 @@ public class AdminMenu extends Menu {
                 inputer.inputString("Press enter to continue...");
                 break;
             case 2:
-
+                String username = inputer.inputString("Enter username: ");
+                commander.chooseDeleteUser(username);
                 // Delete User
-
                 inputer.inputString("Press enter to continue...");
                 break;
             case 3:
 
-                // Update User
+                username = inputer.inputString("Enter Username: ");
+                while (isExistUser(username)) {
+                    System.out.println("User already exists");
+                    username = inputer.inputString("Please enter another username: ");
+                }
+                String password = inputer.inputString("Enter Password: ");
+                String fullName = inputer.inputString("Enter your full name: ");
+                int phoneNumber = inputer.inputInt("Enter your phone number: ");
+                String address = inputer.inputString("Enter your address");
 
+                User user = new User(username,password,fullName,phoneNumber,address);
+                commander.chooseUpdateUser(user);
+                // Update User
                 inputer.inputString("Press enter to continue...");
                 break;
         }
