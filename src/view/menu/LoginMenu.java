@@ -38,9 +38,10 @@ public class LoginMenu extends Menu {
         String username = inputer.inputString("Username: ");
         String password = inputer.inputString("Password: ");
         boolean loginSuccess = userManager.login(username, password);
+        User currentUser = userManager.getCurrentUser();
         if (loginSuccess) {
             System.out.println("!~~_Login successful_~~!");
-            if (userManager.getCurrentUser().getRole()) {
+            if (currentUser.getRole()) {
                 adminMenu.run();
             } else {
                 customerMenu.run();

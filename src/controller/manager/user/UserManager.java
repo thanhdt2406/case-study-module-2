@@ -31,6 +31,7 @@ public class UserManager implements IUserManager {
         for (User ele : listUser.values()) {
             if (ele.getUserName().equals(username) && ele.getPassword().equals(password)) {
                 currentUser = ele;
+                currentUser.setRole(false);
                 System.out.println("login success!");
                 return true;
             }
