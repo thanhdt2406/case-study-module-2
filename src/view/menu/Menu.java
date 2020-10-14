@@ -1,6 +1,6 @@
 package view.menu;
 
-import controller.io.Inputer;
+import controller.io.validate.Inputer;
 import controller.manager.bill.BillManager;
 import controller.manager.product.ProductManager;
 import controller.manager.user.UserManager;

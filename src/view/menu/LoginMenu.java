@@ -35,8 +35,8 @@ public class LoginMenu extends Menu {
     }
 
     public void login() {
-        String username = inputer.inputString("Username: ");
-        String password = inputer.inputString("Password: ");
+        String username = inputer.inputAccount("Username: ");
+        String password = inputer.inputAccount("Password: ");
         boolean loginSuccess = userManager.login(username, password);
         User currentUser = userManager.getCurrentUser();
         if (loginSuccess) {
@@ -54,14 +54,14 @@ public class LoginMenu extends Menu {
 
 
     public void signUp() {
-        String username = inputer.inputString("Enter Username: ");
+        String username = inputer.inputAccount("Enter Username: ");
         while (isExistUser(username)) {
             System.out.println("User already exists");
             username = inputer.inputString("Please enter another username: ");
         }
-        String password = inputer.inputString("Enter Password: ");
+        String password = inputer.inputAccount("Enter Password: ");
         String fullName = inputer.inputString("Enter your full name: ");
-        int phoneNumber = inputer.inputInt("Enter your phone number: ");
+        int phoneNumber = inputer.inputPhoneNumber("Enter your phone number: ");
         String address = inputer.inputString("Enter your address");
         User user = new User(username, password, fullName, phoneNumber, address);
         commander.chooseAddUser(user);
