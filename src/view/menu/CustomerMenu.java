@@ -12,7 +12,8 @@ import java.util.List;
 
 
 public class CustomerMenu extends Menu {
-    private User customer  = userManager.getCurrentUser();;
+    private User customer = userManager.getCurrentUser();
+    ;
     private Bill currentBill = customer.getCurrentBill();
     private Command addProductToBill = new AddProductToBill(currentBill);
     private Command addBill = new AddBill(billManager);
@@ -24,67 +25,69 @@ public class CustomerMenu extends Menu {
 
     public void run() {
         customer = userManager.getCurrentUser();
-        int choice;
+        String CUSTOMER_MENU =
+                "\n|-------CUSTOMER MENU-------|" +
+                        "\n|--1. Search product--------|" +
+                        "\n|--2. Add product to cart---|" +
+                        "\n|--3. Pay cart--------------|" +
+                        "\n|--4. Show current cart-----|" +
+                        "\n|--5. Edit account ---------|" +
+                        "\n|--6. Back -----------------|";
+        int customerChoice;
         do {
-            String CUSTOMER_MENU = "|--1. Search product-------|" +
-                    "\n|--2. Add product to cart--|" +
-                    "\n|--3. Pay -----------------|" +
-                    "\n|--4. Show history---------|" +
-                    "\n|--5. Edit acoount --------|" +
-                    "\n|--6. Back ----------------|";
+            System.out.println("___________________________________________________");
             System.out.println(CUSTOMER_MENU);
-            choice = inputer.inputInt("Your choice: ");
-            setupCusTomerMenu(choice);
-        } while (choice != 6);
+            customerChoice = inputer.inputInt("Your choice: ");
+            setupCustomerMenu(customerChoice);
+        } while (customerChoice != 6);
     }
 
-    public void setupCusTomerMenu(int choice) {
+    public void setupCustomerMenu(int choice) {
         switch (choice) {
             case 1:
-                System.out.println("search product");
-                int choice1;
+                int searchChoice;
+                String SEARCH_MENU =
+                        "\n|-----SEARCH MENU-----|" +
+                                "\n|--1. Show products---|" +
+                                "\n|--2. Search by name--|" +
+                                "\n|--3. Search by ID----|" +
+                                "\n|--4. Back------------|";
                 do {
-                    String SEARCH_MENU = "|--1. Search by name------|" +
-                            "\n|--2. Search by id----|" +
-                            "\n|--3 Add to cart------|" +
-                            "\n|--4. Back------------|";
+                    System.out.println("___________________________________________________");
                     System.out.println(SEARCH_MENU);
-                    choice1 = inputer.inputInt("Your choice: ");
-                    setupSEARCH_MENU(choice1);
-                } while (choice1 != 4);
+                    searchChoice = inputer.inputInt("Your choice: ");
+                    setupSearchMENU(searchChoice);
+                } while (searchChoice != 4);
                 break;
             case 2:
-                System.out.println("add to cart");
-                int id = inputer.inputInt("Enter product ID: ");
+                commander.chooseShowAllProduct();
+                int id = inputer.inputInt("Enter product ID what you want to buy: ");
                 Product product = getProduct(id);
                 billCommander.chooseAddProductToBill(product);
-                currentBill.setTotalPrice(currentBill.getTotalPrice()+product.getPrice());
-                System.out.println(currentBill.getTotalPrice());
+                currentBill.setTotalPrice(currentBill.getTotalPrice() + product.getPrice());
+                System.out.println("Done!");
+                inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-                System.out.println("buy product");
                 currentBill.setUserName(customer.getUserName());
                 billCommander.chooseAddBill(currentBill);
-//                customer.createNewBill();
-//                currentBill = customer.getCurrentBill();
                 customer.setCurrentBill(new Bill());
                 currentBill = customer.getCurrentBill();
-                System.out.println(currentBill.getTotalPrice());
+                System.out.println("Done!");
+                inputer.inputString("Press enter to continue...");
                 break;
             case 4:
-                System.out.println("show bill");
                 List<Product> list = currentBill.getProductList();
                 if (list.size() != 0) {
                     for (Product ele : list) {
                         System.out.println(ele.toString());
                     }
                 } else {
-                    System.out.println("nothing in cart!");
+                    System.out.println("Cart is empty now! :D");
                 }
-
+                inputer.inputString("Press enter to continue...");
                 break;
             case 5:
-                System.out.println("update account");
                 do {
                     String EDIT_MENU = "|--1. Change password-------|" +
                             "\n|--2. Edit full name--------|" +
@@ -93,9 +96,9 @@ public class CustomerMenu extends Menu {
                             "\n|--5. Edit all--------------|" +
                             "\n|--6. Back";
                     System.out.println(EDIT_MENU);
-                    choice1 = inputer.inputInt("Your choice: ");
-                    setupEDIT_MENU(choice1);
-                } while (choice1 != 6);
+                    searchChoice = inputer.inputInt("Your choice: ");
+                    setupEDIT_MENU(searchChoice);
+                } while (searchChoice != 6);
                 break;
             default:
                 System.out.println("choose an option!");
@@ -123,17 +126,19 @@ public class CustomerMenu extends Menu {
         }
     }
 
-    public void setupSEARCH_MENU(int choice) {
+    public void setupSearchMENU(int choice) {
         switch (choice) {
             case 1:
-                System.out.println("search by name");
+                commander.chooseShowAllProduct();
+                inputer.inputString("Press enter to continue...");
                 break;
             case 2:
-                setSearchProductById();
+                searchProductByName();
                 inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-                System.out.println("add to cart");
+                searchProductById();
+                inputer.inputString("Press enter to continue...");
                 break;
             default:
                 System.out.println("Choose an option!");

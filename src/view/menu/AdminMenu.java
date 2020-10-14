@@ -90,11 +90,11 @@ public class AdminMenu extends Menu {
                 inputer.inputString("Press enter to continue...");
                 break;
             case 2:
-                setSearchProductByName();
+                searchProductByName();
                 inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-                setSearchProductById();
+                searchProductById();
                 inputer.inputString("Press enter to continue...");
                 break;
         }

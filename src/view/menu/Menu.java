@@ -57,7 +57,7 @@ public class Menu {
         return product;
     }
 
-    public void setSearchProductByName() {
+    public void searchProductByName() {
         String name = inputer.inputString("Enter product name: ");
         List rs = commander.chooseSearchProductByName(name);
         System.out.println(rs.size() + " results found!");
@@ -66,7 +66,7 @@ public class Menu {
         }
     }
 
-    public void setSearchProductById(){
+    public void searchProductById(){
         int productID = inputer.inputInt("Enter product id: ");
         Product rs = commander.chooseSearchProductByID(productID);
         System.out.println(rs.toString());
