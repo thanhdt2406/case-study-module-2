@@ -13,7 +13,6 @@ public class Bill implements Serializable {
     private LocalDate date;
 
     public Bill() {
-
     }
 
     public int getBillID() {
@@ -45,6 +44,10 @@ public class Bill implements Serializable {
         return date;
     }
 
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
     public void addProduct(Product product) {
         productList.add(product);
     }
@@ -55,13 +58,10 @@ public class Bill implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("|id: %-5d|Username: %-12s|total price: %-10d",billID, userName,totalPrice);
-//        return "Bill{" +
-//                "billID=" + billID +
-//                ", customerID=" + customerID +
-//                ", totalPrice=" + totalPrice +
-//                ", productList=" + productList +
-//                ", date=" + date +
-//                '}';
+        String str = String.format("|Bill ID: %-5d|Username: %-12s|Total price: %-10d|Date: %-50s", billID, userName, totalPrice, date);
+        for (Product product : productList) {
+            str += "\n" + product.toString();
+        }
+        return str;
     }
 }

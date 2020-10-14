@@ -11,6 +11,9 @@ public class AddProductToBill implements Command<Object,Product> {
         this.bill = bill;
     }
 
+    public void setBill(Bill bill) {
+        this.bill = bill;
+    }
     @Override
     public Object excuse(Product product) {
         bill.addProduct(product);

@@ -10,11 +10,12 @@ import controller.productCommander.bill.*;
 import controller.productCommander.product.SearchProductById;
 import controller.productCommander.product.SearchProductByName;
 import controller.productCommander.product.ShowAllProduct;
-import controller.productCommander.userAcount.AddUser;
-import controller.productCommander.userAcount.DeleteUser;
-import controller.productCommander.userAcount.ShowAllUser;
-import controller.productCommander.userAcount.UpdateUser;
+import controller.productCommander.userAccount.AddUser;
+import controller.productCommander.userAccount.DeleteUser;
+import controller.productCommander.userAccount.ShowAllUser;
+import controller.productCommander.userAccount.UpdateUser;
 import model.Product;
+import model.User;
 
 import java.util.List;
 
@@ -69,6 +70,10 @@ public class Menu {
     public void searchProductById(){
         int productID = inputer.inputInt("Enter product id: ");
         Product rs = commander.chooseSearchProductByID(productID);
+        if(rs ==null){
+            System.out.println("Not found product!");
+            return;
+        }
         System.out.println(rs.toString());
     }
 
@@ -80,8 +85,14 @@ public class Menu {
         return false;
     }
 
-    public void editUser(){
+    public void editUser(String userName){
+        String password = inputer.inputString("Enter Password: ");
+        String fullName = inputer.inputString("Enter your full name: ");
+        int phoneNumber = inputer.inputInt("Enter your phone number: ");
+        String address = inputer.inputString("Enter your address");
 
+        User user = new User(userName,password,fullName,phoneNumber,address);
+        commander.chooseUpdateUser(user);
     }
 
 }

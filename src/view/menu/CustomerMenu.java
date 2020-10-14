@@ -8,6 +8,7 @@ import model.Bill;
 import model.Product;
 import model.User;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -19,11 +20,12 @@ public class CustomerMenu extends Menu {
     private Command addBill = new AddBill(billManager);
 
     private Commander billCommander = new Commander(addProductToBill, addBill);
-
+    List<Product> list = currentBill.getProductList();
     public CustomerMenu() {
     }
 
     public void run() {
+
         customer = userManager.getCurrentUser();
         String CUSTOMER_MENU =
                 "\n|-------CUSTOMER MENU-------|" +
@@ -31,8 +33,8 @@ public class CustomerMenu extends Menu {
                         "\n|--2. Add product to cart---|" +
                         "\n|--3. Pay cart--------------|" +
                         "\n|--4. Show current cart-----|" +
-                        "\n|--5. Edit account ---------|" +
-                        "\n|--6. Back -----------------|";
+                        "\n|--5. Edit account----------|" +
+                        "\n|--6. Log out---------------|";
         int customerChoice;
         do {
             System.out.println("___________________________________________________");
@@ -70,9 +72,11 @@ public class CustomerMenu extends Menu {
                 break;
             case 3:
                 currentBill.setUserName(customer.getUserName());
+                currentBill.setDate(LocalDate.now());
                 billCommander.chooseAddBill(currentBill);
                 customer.setCurrentBill(new Bill());
                 currentBill = customer.getCurrentBill();
+                ((AddProductToBill) addProductToBill).setBill(currentBill);
                 System.out.println("Done!");
                 inputer.inputString("Press enter to continue...");
                 break;
@@ -88,41 +92,10 @@ public class CustomerMenu extends Menu {
                 inputer.inputString("Press enter to continue...");
                 break;
             case 5:
-                do {
-                    String EDIT_MENU = "|--1. Change password-------|" +
-                            "\n|--2. Edit full name--------|" +
-                            "\n|--3. Edit phone number-----|" +
-                            "\n|--4. Edit address----------|" +
-                            "\n|--5. Edit all--------------|" +
-                            "\n|--6. Back";
-                    System.out.println(EDIT_MENU);
-                    searchChoice = inputer.inputInt("Your choice: ");
-                    setupEDIT_MENU(searchChoice);
-                } while (searchChoice != 6);
+                editUser(customer.getUserName());
                 break;
             default:
-                System.out.println("choose an option!");
-        }
-    }
-
-    public void setupEDIT_MENU(int choice) {
-        switch (choice) {
-            case 1:
-                System.out.println("change password");
-                break;
-            case 2:
-                System.out.println("edit name");
-                break;
-            case 3:
-                System.out.println("edit phone number");
-                break;
-            case 4:
-                System.out.println("edit address");
-            case 5:
-                System.out.println("edit all");
-                break;
-            default:
-                System.out.println("choose an option!");
+                System.out.println("Choose an option!");
         }
     }
 

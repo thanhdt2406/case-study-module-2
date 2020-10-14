@@ -10,14 +10,14 @@ public class AdminMenu extends Menu {
 
     public void run() {
         String ADMIN_MENU =
-                         "\n|--------ADMIN MENU--------|" +
-                         "\n|--1. Product management---|" +
-                         "\n|--2. User management------|" +
-                         "\n|--3. Bill management------|" +
-                         "\n|--4. Log out--------------|" +
-                         "\n|--5. Exit-----------------|";
+                "\n|--------ADMIN MENU--------|" +
+                        "\n|--1. Product management---|" +
+                        "\n|--2. User management------|" +
+                        "\n|--3. Bill management------|" +
+                        "\n|--4. Log out--------------|" +
+                        "\n|--5. Exit-----------------|";
         int choice;
-        do{
+        do {
             System.out.println("___________________________________________________");
             System.out.println(ADMIN_MENU);
             choice = inputer.inputInt("Your choice: ");
@@ -28,16 +28,16 @@ public class AdminMenu extends Menu {
     public void setupAdminMenu(int choice) {
         String PRODUCT_MENU =
                 "\n|-----PRODUCT MENU-----|" +
-                "\n|--1. Show products----|" +
-                "\n|--2. Search by name---|" +
-                "\n|--3. Search by ID-----|" +
-                "\n|--4. Back-------------|";
+                        "\n|--1. Show products----|" +
+                        "\n|--2. Search by name---|" +
+                        "\n|--3. Search by ID-----|" +
+                        "\n|--4. Back-------------|";
         String USER_MANAGER_MENU =
                 "\n|---USER MANAGER MENU---|" +
-                "\n|--1. Show all users----|" +
-                "\n|--2. Delete user-------|" +
-                "\n|--3. Update user-------|" +
-                "\n|--4. Back--------------|";
+                        "\n|--1. Show all users----|" +
+                        "\n|--2. Delete user-------|" +
+                        "\n|--3. Update user-------|" +
+                        "\n|--4. Back--------------|";
         String BILL_MANAGER_MENU =
                 "\n|---BILL MANAGER MENU---|" +
                         "\n|--1. Show all bills----|" +
@@ -48,7 +48,7 @@ public class AdminMenu extends Menu {
         switch (choice) {
             case 1:
                 int productChoice;
-                do{
+                do {
                     System.out.println("___________________________________________________");
                     System.out.println(PRODUCT_MENU);
                     productChoice = inputer.inputInt("Your choice: ");
@@ -57,7 +57,7 @@ public class AdminMenu extends Menu {
                 break;
             case 2:
                 int userManagerChoice;
-                do{
+                do {
                     System.out.println("___________________________________________________");
                     System.out.println(USER_MANAGER_MENU);
                     userManagerChoice = inputer.inputInt("Your choice: ");
@@ -67,8 +67,8 @@ public class AdminMenu extends Menu {
                 break;
             case 3:
                 int billManagerChoice;
-                do{
-                    System.out.println("_________________BILL_MANAGER_MENU__________________");
+                do {
+                    System.out.println("___________________________________________________");
                     System.out.println(BILL_MANAGER_MENU);
                     billManagerChoice = inputer.inputInt("Your choice: ");
                     setupManageBillMenu(billManagerChoice);
@@ -78,8 +78,6 @@ public class AdminMenu extends Menu {
             case 5:
                 System.out.println("Exit program!!!");
                 System.exit(0);
-            default:
-                System.out.println("No choice! Try again :D");
         }
     }
 
@@ -113,43 +111,32 @@ public class AdminMenu extends Menu {
                 inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-
                 username = inputer.inputString("Enter Username: ");
-                while (isExistUser(username)) {
-                    System.out.println("User already exists");
-                    username = inputer.inputString("Please enter another username: ");
-                }
-                String password = inputer.inputString("Enter Password: ");
-                String fullName = inputer.inputString("Enter your full name: ");
-                int phoneNumber = inputer.inputInt("Enter your phone number: ");
-                String address = inputer.inputString("Enter your address");
-
-                User user = new User(username,password,fullName,phoneNumber,address);
-                commander.chooseUpdateUser(user);
-                // Update User
-                inputer.inputString("Press enter to continue...");
+                editUser(username);
                 break;
         }
     }
 
     public void setupManageBillMenu(int choice) {
-        switch (choice){
+        switch (choice) {
             case 1:
-                System.out.println("show bill");
                 billCommander.chooseShowBill();
+                inputer.inputString("Press enter to continue...");
                 break;
             case 2:
-                System.out.println("delete bill");
-                int id = inputer.inputInt("enter bill id: ");
+                int id = inputer.inputInt("Enter bill ID: ");
                 billCommander.chooseDeleteBill(id);
+                System.out.println("Done!");
+                inputer.inputString("Press enter to continue...");
                 break;
             case 3:
-                System.out.println("search bill");
-                id = inputer.inputInt("Enter bill id: ");
-                billCommander.chooseSearchBill(id);
+                id = inputer.inputInt("Enter bill ID: ");
+                System.out.println(billCommander.chooseSearchBill(id).toString());
+
+                inputer.inputString("Press enter to continue...");
                 break;
             default:
-                System.out.println("choose an option!");
+                System.out.println("Choose an option!");
         }
     }
 }

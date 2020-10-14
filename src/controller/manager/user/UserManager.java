@@ -78,7 +78,10 @@ public class UserManager implements IUserManager {
 
     @Override
     public void showAllUser() {
-        System.out.println("manage show user");
+        if(listUser.isEmpty()){
+            System.out.println("No customer account!");
+            return;
+        }
         for (User ele : listUser.values()) {
             System.out.println(ele.toString());
         }
@@ -100,42 +103,6 @@ public class UserManager implements IUserManager {
         readData();
         if (listUser.containsKey(user.getUserName())) {
             listUser.replace(user.getUserName(), user);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean editUserPassword(String userName, String password) {
-        readData();
-        if (listUser.containsKey(userName)) {
-            listUser.get(userName).setPassword(password);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean editUserName(String userName, String fullName) {
-        readData();
-        if (listUser.containsKey(userName)) {
-            listUser.get(userName).setFullName(fullName);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean editUserPhoneNumber(String userName, int phoneNumber) {
-        readData();
-        if (listUser.containsKey(userName)) {
-            listUser.get(userName).setPhoneNumber(phoneNumber);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean editUserAddress(String userName, String address) {
-        readData();
-        if (listUser.containsKey(userName)) {
-            listUser.get(userName).setAddress(address);
             return true;
         }
         return false;

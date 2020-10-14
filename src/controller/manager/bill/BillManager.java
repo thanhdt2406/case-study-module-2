@@ -59,7 +59,7 @@ public class BillManager implements IBillManager, Serializable {
     public void showBill() {
         readData();
         for (Bill bill : billMap.values()) {
-            System.out.println(bill.toString());
+            System.out.println(bill.toString()+"\n\n");
         }
         //System.out.println(billMap);
     }

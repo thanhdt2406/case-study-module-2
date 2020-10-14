@@ -14,7 +14,7 @@ public class Inputer {
                 value = Integer.parseInt(scanner.nextLine());
                 check = false;
             } catch (NumberFormatException e) {
-                System.out.println("pls input a number!");
+                System.out.println("Input error, please try again!!!");
                 check = true;
             }
         } while (check);

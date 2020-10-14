@@ -1,4 +1,4 @@
-package controller.productCommander.userAcount;
+package controller.productCommander.userAccount;
 
 import controller.manager.user.UserManager;
 import controller.productCommander.Command;

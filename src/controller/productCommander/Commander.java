@@ -58,7 +58,6 @@ public class Commander {
         addUser.excuse(user);
     }
     public void chooseShowAllUser() {
-        System.out.println("choose show user");
         showAllUser.excuse(new User());
     }
     public void chooseDeleteUser(String username){
@@ -81,8 +80,8 @@ public class Commander {
         showBill.excuse(new Object());
     }
 
-    public void chooseSearchBill(int id) {
-        searchBill.excuse(id);
+    public Bill chooseSearchBill(int id) {
+       return (Bill) searchBill.excuse(id);
     }
     public void chooseAddProductToBill(Product product){
         addProductToBill.excuse(product);
